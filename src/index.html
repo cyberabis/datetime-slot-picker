@@ -9,45 +9,7 @@
     <script nomodule src="/build/datetime-slot-picker.js"></script>
   </head>
   <body>
-    <div>
-      Section above
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-    </div>
-    <datetime-slot-picker language="en" placeholder="Choose a delivery/pickup slot"></datetime-slot-picker>
-    <div>
-      Section below
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-      <br/>
-      Blah blah
-    </div>
+    <datetime-slot-picker language="en" placeholder="Pick a convenient time slot"></datetime-slot-picker>
     <script>
       const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
       datetimeSlotPicker.addEventListener('onSlotUpdate', event => { console.log('Updated Slot: ', event.detail) });
