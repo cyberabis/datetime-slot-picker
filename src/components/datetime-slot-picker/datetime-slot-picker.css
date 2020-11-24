@@ -1,3 +1,16 @@
 :host {
   display: block;
 }
+.neo-slot-picker {
+  position: relative;
+}
+.neo-popup {
+  position: absolute;
+  z-index: 999;
+  background-color: whitesmoke;
+  padding: 5px;
+  margin: 3px 0px;
+}
+.neo-input {
+  min-width: 200px;
+}

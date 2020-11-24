@@ -7,18 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface DatetimeSlotPicker {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "language": string;
+        "placeholder": string;
+        "slots": any[];
     }
 }
 declare global {
@@ -34,18 +25,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface DatetimeSlotPicker {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "language"?: string;
+        "onOnSlotUpdate"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: string;
+        "slots"?: any[];
     }
     interface IntrinsicElements {
         "datetime-slot-picker": DatetimeSlotPicker;
