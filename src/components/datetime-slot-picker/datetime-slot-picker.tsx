@@ -1,5 +1,7 @@
 import { Component, Prop, h, State, Event, EventEmitter } from '@stencil/core';
 import { translations } from '../../utils/translations';
+import { Slot } from '../../models/slot';
+import { DateGrid } from '../../models/date-grid';
 
 @Component({
   tag: 'datetime-slot-picker',
@@ -9,17 +11,17 @@ export class DatetimeSlotPicker {
 
   @Prop() language: string;
   @Prop() placeholder: string;
-  @Prop() slots: any[];
+  @Prop() slots: Slot[];
   
   @State() isPopped: boolean;
   @State() isNeoInputAboveFold: boolean;
   @State() isNeoInputLeftSide: boolean;
   @State() neoInputHeight: number;
-  @State() isTimeslotGridVisible: boolean;
+  @State() isTimeSlotGridVisible: boolean;
   @State() activeDateGridPage: number;
-  @State() dateGrid: any[];
+  @State() dateGrid: DateGrid[];
   @State() selectedDate: string;
-  @State() selectedTimeslot: string;
+  @State() selectedTimeSlot: string;
   @State() displayText: string;
 
   @Event() onSlotUpdate: EventEmitter;
@@ -39,7 +41,7 @@ export class DatetimeSlotPicker {
     this.isPopped = !this.isPopped;
   }
 
-  private getActiveMonth():string {
+  private getActiveMonthYear():string {
     //TODO
     return 'Dec 2020';
   }
@@ -58,7 +60,7 @@ export class DatetimeSlotPicker {
 
   private setSlot() {
     //TODO
-    this.onSlotUpdate.emit({date: this.selectedDate, timeslot: this.selectedTimeslot});
+    this.onSlotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTimeSlot});
   }
   
   private getTranslation(propertyName:string): string {
@@ -83,23 +85,23 @@ export class DatetimeSlotPicker {
         <div style={popupStyle} 
           class={this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above'}
           >
-          { !this.isTimeslotGridVisible && 
+          { !this.isTimeSlotGridVisible && 
             <table class="neo-grid neo-date-grid">
               <tr>
                 <th></th>
                 <th><span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span></th>
-                <th colSpan={3}>{this.getActiveMonth()}</th>
+                <th colSpan={3}>{this.getActiveMonthYear()}</th>
                 <th><span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span></th>
                 <th><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
               <tr>
-                <td><span class="new-dow">S</span></td>
-                <td><span class="new-dow">M</span></td>
-                <td><span class="new-dow">T</span></td>
-                <td><span class="new-dow">W</span></td>
-                <td><span class="new-dow">T</span></td>
-                <td><span class="new-dow">F</span></td>
-                <td><span class="new-dow">S</span></td>
+                <td><span class="neo-dow">S</span></td>
+                <td><span class="neo-dow">M</span></td>
+                <td><span class="neo-dow">T</span></td>
+                <td><span class="neo-dow">W</span></td>
+                <td><span class="neo-dow">T</span></td>
+                <td><span class="neo-dow">F</span></td>
+                <td><span class="neo-dow">S</span></td>
               </tr>
 
             </table>

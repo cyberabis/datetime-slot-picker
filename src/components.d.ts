@@ -5,11 +5,12 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Slot } from "./models/slot";
 export namespace Components {
     interface DatetimeSlotPicker {
         "language": string;
         "placeholder": string;
-        "slots": any[];
+        "slots": Slot[];
     }
 }
 declare global {
@@ -28,7 +29,7 @@ declare namespace LocalJSX {
         "language"?: string;
         "onOnSlotUpdate"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
-        "slots"?: any[];
+        "slots"?: Slot[];
     }
     interface IntrinsicElements {
         "datetime-slot-picker": DatetimeSlotPicker;
