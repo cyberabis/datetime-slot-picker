@@ -20,8 +20,8 @@ export class DatetimeSlotPicker {
   @State() isTimeSlotGridVisible: boolean;
   @State() activeDateGridPage: number;
   @State() dateGrid: DateGrid[];
-  @State() selectedDate: string;
-  @State() selectedTimeSlot: string;
+  @State() selectedDate: string; //Eg: Wed, 25 Nov 2020
+  @State() selectedTimeSlot: string; //Eg: 10 AM, 10:00 AM, 10 AM - 11 AM, 10:00 AM - 11:00 AM
   @State() displayText: string;
 
   @Event() onSlotUpdate: EventEmitter;
@@ -64,7 +64,7 @@ export class DatetimeSlotPicker {
   }
   
   private getTranslation(propertyName:string): string {
-    return translations[propertyName][this.language];
+    return translations[this.language][propertyName];
   }
 
   render() {

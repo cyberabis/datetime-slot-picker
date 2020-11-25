@@ -9,7 +9,11 @@
     <script nomodule src="/build/datetime-slot-picker.js"></script>
   </head>
   <body>
-    <datetime-slot-picker language="en" placeholder="Pick a convenient time slot"></datetime-slot-picker>
+    <datetime-slot-picker 
+      language="en" 
+      placeholder="Pick a convenient time slot"
+      >
+    </datetime-slot-picker>
     <script>
       const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
       datetimeSlotPicker.addEventListener('onSlotUpdate', event => { console.log('Updated Slot: ', event.detail) });

@@ -1,65 +1,25 @@
 export let translations = {
-    Mon: {
-      en: 'Mon'
-    },
-    Tue: {
-      en: 'Tue'
-    },
-    Wed: {
-      en: 'Wed'
-    },
-    Thu: {
-      en: 'Thu'
-    },
-    Fri: {
-      en: 'Fri'
-    },
-    Sat: {
-      en: 'Sat'
-    },
-    Sun: {
-      en: 'Sun'
-    },
-    AM: {
-      en: 'AM'
-    },
-    PM: {
-      en: 'PM'
-    },
-    Jan: {
-      en: 'Jan'
-    },
-    Feb: {
-      en: 'Feb'
-    },
-    Mar: {
-      en: 'Mar'
-    },
-    Apr: {
-      en: 'Apr'
-    },
-    May: {
-      en: 'May'
-    },
-    Jun: {
-      en : 'Jun'
-    },
-    Jul: {
-      en: 'Jul'
-    },
-    Aug: {
-      en: 'Aug'
-    },
-    Sep: {
-      en: 'Sep'
-    },
-    Oct: {
-      en: 'Oct'
-    },
-    Nov: {
-      en: 'Nov'
-    },
-    Dec: {
-      en: 'Dec'
-    }
+  en: {
+    Mon: 'Mon',
+    Tue: 'Tue',
+    Wed: 'Wed',
+    Thu: 'Thu',
+    Fri: 'Fri',
+    Sat: 'Sat',
+    Sun: 'Sun',
+    AM: 'AM',
+    PM: 'PM',
+    Jan: 'Jan',
+    Feb: 'Feb',
+    Mar: 'Mar',
+    Apr: 'Apr',
+    May: 'May',
+    Jun: 'Jun',
+    Jul: 'Jul',
+    Aug: 'Aug',
+    Sep: 'Sep',
+    Oct: 'Oct',
+    Nov: 'Nov',
+    Dec: 'Dec'
+  }
 }

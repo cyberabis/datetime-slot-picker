@@ -1,6 +1,6 @@
 export interface DateGrid {
-    monthYear: string,
-    weeks: Week[]
+    monthYear: string, //Eg: Nov 2020
+    weeks: Week[] //should be six weeks
 }
 export interface Week {
     days: Day[]
@@ -8,5 +8,5 @@ export interface Week {
 export interface Day {
     dayOfMonth: number,
     isEnabled: boolean,
-    isSelected?: boolean
+    dateText: string //Eg: Wed, 25 Nov 2020 (standard format)
 }
