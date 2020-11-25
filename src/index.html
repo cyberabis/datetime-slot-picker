@@ -17,6 +17,44 @@
     <script>
       const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
       datetimeSlotPicker.addEventListener('onSlotUpdate', event => { console.log('Updated Slot: ', event.detail) });
+      datetimeSlotPicker.slots = [
+        {
+          date: 'Thu, 26 Nov 2020',
+          timeSlots: [
+            '10 AM',
+            '11 AM',
+            '4 PM',
+            '5 PM'
+          ]
+        },
+        {
+          date: 'Fri, 27 Nov 2020',
+          timeSlots: [
+            '10 AM',
+            '11 AM',
+            '4 PM',
+            '5 PM'
+          ]
+        },
+        {
+          date: 'Mon, 30 Nov 2020',
+          timeSlots: [
+            '10 AM',
+            '11 AM',
+            '4 PM',
+            '5 PM'
+          ]
+        },
+        {
+          date: 'Tue, 1 Dec 2020',
+          timeSlots: [
+            '10 AM',
+            '11 AM',
+            '4 PM',
+            '5 PM'
+          ]
+        }
+      ];
     </script>
   </body>
 </html>

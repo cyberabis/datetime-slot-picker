@@ -1,7 +1,8 @@
-import { Component, Prop, h, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Watch } from '@stencil/core';
 import { translations } from '../../utils/translations';
 import { Slot } from '../../models/slot';
 import { DateGrid } from '../../models/date-grid';
+import { generateDateGrid } from '../../utils/generate-date-grid';
 
 @Component({
   tag: 'datetime-slot-picker',
@@ -19,7 +20,7 @@ export class DatetimeSlotPicker {
   @State() neoInputHeight: number;
   @State() isTimeSlotGridVisible: boolean;
   @State() activeDateGridPage: number;
-  @State() dateGrid: DateGrid[];
+  @State() dateGrids: DateGrid[];
   @State() selectedDate: string; //Eg: Wed, 25 Nov 2020
   @State() selectedTimeSlot: string; //Eg: 10 AM, 10:00 AM, 10 AM - 11 AM, 10:00 AM - 11:00 AM
   @State() displayText: string;
@@ -27,6 +28,21 @@ export class DatetimeSlotPicker {
   @Event() onSlotUpdate: EventEmitter;
 
   neoInput!: HTMLInputElement;
+
+  componentWillLoad() {
+    this.processSlots(this.slots);
+  }
+
+  @Watch('slots')
+  private processSlots(slots: Slot[]) {
+    //Reset the state
+    this.isTimeSlotGridVisible = false;
+    this.selectedDate = undefined;
+    this.selectedTimeSlot = undefined;
+    this.displayText = undefined;
+    this.dateGrids = generateDateGrid(slots);
+    if(this.dateGrids && this.dateGrids.length) this.activeDateGridPage = 1;
+  }
 
   private togglePopup() {
     if(this.neoInput.getBoundingClientRect().top < window.innerHeight/2) 

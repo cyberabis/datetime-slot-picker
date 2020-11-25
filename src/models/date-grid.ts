@@ -3,7 +3,7 @@ export interface DateGrid {
     weeks: Week[] //should be six weeks
 }
 export interface Week {
-    days: Day[]
+    days: Day[] //should be seven days
 }
 export interface Day {
     dayOfMonth: number,
