@@ -3,6 +3,7 @@ import { DateGrid, Week } from '../models/date-grid';
 
 const monthIndex = {Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11};
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export function generateDateGrid(slots: Slot[]): DateGrid[] {
     let dateGrids: DateGrid[] = [];
@@ -44,10 +45,13 @@ export function generateDateGrid(slots: Slot[]): DateGrid[] {
                 allDays.push(null);
             }
             for (let dayCounter = 1; dayCounter <= lastDate.getDate(); dayCounter++) {
+                let currentDate  = new Date(y1, m1, dayCounter);
+                let dateText = days[currentDate.getDay()] + ', ' + dayCounter + ' ' + months[m1] + ' ' + y1;
+                let slot = slots.find(s=>s.date === dateText);
                 allDays.push({
                     dayOfMonth: dayCounter,
-                    isEnabled: false, //todo
-                    dateText: '' //todo
+                    isEnabled: slot ? true : false,
+                    dateText: dateText
                 });
             }
             for(let backPadCounter = allDays.length + 1; backPadCounter <= 42; backPadCounter++) {
@@ -69,6 +73,6 @@ export function generateDateGrid(slots: Slot[]): DateGrid[] {
             }
         } while(y1 < y2 || (y1 === y2 && m1 <= m2) )
     }
-    console.log('Date Grids: ', JSON.stringify(dateGrids, null, 2));
+    //console.log('Date Grids: ', JSON.stringify(dateGrids, null, 2));
     return dateGrids;
 }

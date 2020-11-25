@@ -41,7 +41,7 @@ export class DatetimeSlotPicker {
     this.selectedTimeSlot = undefined;
     this.displayText = undefined;
     this.dateGrids = generateDateGrid(slots);
-    if(this.dateGrids && this.dateGrids.length) this.activeDateGridPage = 1;
+    if(this.dateGrids && this.dateGrids.length) this.activeDateGridPage = 0;
   }
 
   private togglePopup() {
@@ -57,13 +57,12 @@ export class DatetimeSlotPicker {
     this.isPopped = !this.isPopped;
   }
 
-  private getActiveMonthYear():string {
-    //TODO
-    return 'Dec 2020';
-  }
-
   private closeGrid() {
     this.isPopped = false;
+  }
+
+  private setSelectedDate(dateText: string) {
+    if(dateText) this.selectedDate = dateText;
   }
 
   private prevDateGrid() {
@@ -89,6 +88,7 @@ export class DatetimeSlotPicker {
       left: this.isNeoInputLeftSide ? '0px' : undefined,
       right: !this.isNeoInputLeftSide ? '0px' : undefined
     };
+    console.log('Date Grid: ', this.dateGrids[this.activeDateGridPage]);
     return <span class="neo-slot-picker">
       <input class="neo-input" type="text" readonly 
         placeholder={this.placeholder ? this.placeholder : 'Pick a time slot'} 
@@ -101,12 +101,12 @@ export class DatetimeSlotPicker {
         <div style={popupStyle} 
           class={this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above'}
           >
-          { !this.isTimeSlotGridVisible && 
+          { !this.isTimeSlotGridVisible && this.dateGrids && this.dateGrids.length &&
             <table class="neo-grid neo-date-grid">
               <tr>
                 <th></th>
                 <th><span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span></th>
-                <th colSpan={3}>{this.getActiveMonthYear()}</th>
+                <th colSpan={3}>{this.dateGrids[this.activeDateGridPage].monthYear}</th>
                 <th><span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span></th>
                 <th><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
@@ -119,7 +119,22 @@ export class DatetimeSlotPicker {
                 <td><span class="neo-dow">F</span></td>
                 <td><span class="neo-dow">S</span></td>
               </tr>
-
+              {this.dateGrids[this.activeDateGridPage].weeks.map(week=>{
+                return <tr>
+                  {week.days.map(day=>{
+                    return day
+                      ? <td class={day.isEnabled && day.dateText == this.selectedDate ? 'neo-selected-cell' : undefined}>
+                          <span 
+                            class={!day.isEnabled ? 'neo-day neo-day-disabled' : (day.dateText == this.selectedDate ? 'neo-day neo-day-selected' : 'neo-day neo-day-enabled')}
+                            onClick={()=>this.setSelectedDate(day.isEnabled ? day.dateText : undefined)}
+                            >
+                            {day.dayOfMonth}
+                          </span>
+                        </td>
+                      : <td>&nbsp;</td>
+                  })}
+                </tr>
+              })}
             </table>
           }
         </div>
