@@ -8,7 +8,7 @@
   position: absolute;
   z-index: 999;
   background-color: white;
-  padding: 5px;
+  padding: 2px;
   margin: 3px 0px;
   box-shadow: 0 0 10px lightgray;
   border: 1px solid whitesmoke;
@@ -16,4 +16,24 @@
 .neo-input {
   min-width: 250px;
   cursor: pointer;
+}
+.neo-paginate, .neo-close{
+  padding: 2px;
+  cursor: pointer;
+  color: gray;
+  font-weight: normal;
+}
+table, th, td {
+  border: 1px solid whitesmoke;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 3px;
+}
+td {
+  text-align: center;
+}
+.neo-grid {
+  font-size: small;
+  min-width: 250px;
 }

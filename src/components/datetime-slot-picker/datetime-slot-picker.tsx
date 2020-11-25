@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter } from '@stencil/core';
 import { translations } from '../../utils/translations';
 
 @Component({
@@ -15,34 +15,49 @@ export class DatetimeSlotPicker {
   @State() isNeoInputAboveFold: boolean;
   @State() isNeoInputLeftSide: boolean;
   @State() neoInputHeight: number;
+  @State() isTimeslotGridVisible: boolean;
+  @State() activeDateGridPage: number;
+  @State() dateGrid: any[];
   @State() selectedDate: string;
   @State() selectedTimeslot: string;
   @State() displayText: string;
 
   @Event() onSlotUpdate: EventEmitter;
 
-  @Element() el: HTMLElement;
+  neoInput!: HTMLInputElement;
 
   private togglePopup() {
-    let neoInput: HTMLElement = this.el.querySelector(".neo-input");
-    if(neoInput.getBoundingClientRect().top < window.innerHeight/2) 
+    if(this.neoInput.getBoundingClientRect().top < window.innerHeight/2) 
       this.isNeoInputAboveFold = true;
     else 
       this.isNeoInputAboveFold = false;
-    if(neoInput.getBoundingClientRect().left < window.innerWidth/2) 
+    if(this.neoInput.getBoundingClientRect().left < window.innerWidth/2) 
       this.isNeoInputLeftSide = true;
     else 
       this.isNeoInputLeftSide = false;
-    this.neoInputHeight = neoInput.getBoundingClientRect().bottom - this.el.getBoundingClientRect().top;
-    console.log('Is NeoInput Above Fold? ', this.isNeoInputAboveFold);
-    console.log('Is NeoInput On Left Side? ', this.isNeoInputLeftSide);
-    console.log('NeoInput Height: ', this.neoInputHeight);
+    this.neoInputHeight = this.neoInput.getBoundingClientRect().bottom - this.neoInput.getBoundingClientRect().top;
     this.isPopped = !this.isPopped;
+  }
+
+  private getActiveMonth():string {
+    //TODO
+    return 'Dec 2020';
+  }
+
+  private closeGrid() {
+    this.isPopped = false;
+  }
+
+  private prevDateGrid() {
+    //TODO
+  }
+
+  private nextDateGrid() {
+    //TODO
   }
 
   private setSlot() {
     //TODO
-
     this.onSlotUpdate.emit({date: this.selectedDate, timeslot: this.selectedTimeslot});
   }
   
@@ -51,26 +66,47 @@ export class DatetimeSlotPicker {
   }
 
   render() {
+    let popupStyle = {
+      bottom: !this.isNeoInputAboveFold ? this.neoInputHeight + 'px' : undefined,
+      left: this.isNeoInputLeftSide ? '0px' : undefined,
+      right: !this.isNeoInputLeftSide ? '0px' : undefined
+    };
     return <span class="neo-slot-picker">
       <input class="neo-input" type="text" readonly 
         placeholder={this.placeholder ? this.placeholder : 'Pick a time slot'} 
         value={this.displayText} 
         onClick={()=>this.togglePopup()}
+        ref={(el) => this.neoInput = el as HTMLInputElement}
         >
       </input>
       { this.isPopped &&
-        <div class={this.isNeoInputAboveFold ? "neo-popup neo-popup-below" : "neo-popup neo-popup-above"}>
-          This is the popup section.
+        <div style={popupStyle} 
+          class={this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above'}
+          >
+          { !this.isTimeslotGridVisible && 
+            <table class="neo-grid neo-date-grid">
+              <tr>
+                <th></th>
+                <th><span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span></th>
+                <th colSpan={3}>{this.getActiveMonth()}</th>
+                <th><span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span></th>
+                <th><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
+              </tr>
+              <tr>
+                <td><span class="new-dow">S</span></td>
+                <td><span class="new-dow">M</span></td>
+                <td><span class="new-dow">T</span></td>
+                <td><span class="new-dow">W</span></td>
+                <td><span class="new-dow">T</span></td>
+                <td><span class="new-dow">F</span></td>
+                <td><span class="new-dow">S</span></td>
+              </tr>
+
+            </table>
+          }
         </div>
       }
     </span>
   }
 
-  componentDidRender() {
-    let neoPopup: HTMLElement = this.el.querySelector(".neo-popup");
-    if(neoPopup && this.isNeoInputLeftSide) neoPopup.style.setProperty('left', '0px');
-    else if(neoPopup) neoPopup.style.setProperty('right', '0px');
-    let neoPopupAbove: HTMLElement = this.el.querySelector(".neo-popup-above");
-    if(neoPopupAbove) neoPopupAbove.style.setProperty('bottom', this.neoInputHeight + 'px');
-  }
 }
