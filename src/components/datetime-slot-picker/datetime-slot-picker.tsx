@@ -67,6 +67,8 @@ export class DatetimeSlotPicker {
     if(this.slots.length && this.slots[0].timeSlots){
       let slot = this.slots.find(s => s.date === this.selectedDate);
       this.timeGrids = generateTimeGrid(slot);
+      this.selectedTime = undefined;
+      if(this.timeGrids && this.timeGrids.length) this.activeTimeGridPage = 1;
       this.isTimeSlotGridVisible = true;
     }
     else this.setSlot();
@@ -114,7 +116,7 @@ export class DatetimeSlotPicker {
         <div style={popupStyle} 
           class={this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above'}
           >
-          {/* Table Grid when data exists */}
+          {/* Date Grid when data exists */}
           { !this.isTimeSlotGridVisible && this.dateGrids && this.dateGrids.length &&
             <table class="neo-grid neo-date-grid">
               <tr>
@@ -163,10 +165,10 @@ export class DatetimeSlotPicker {
               })}
             </table>
           }
-          {/* TODO: Table Grid when no data */}
+          {/* TODO: Date Grid when no data - blank */}
           {/* TODO: Time Grid when data exists */}
 
-          {/* TODO: Time Grid when no data */}
+          {/* TODO: Time Grid when no data - blank */}
         </div>
       }
     </span>
