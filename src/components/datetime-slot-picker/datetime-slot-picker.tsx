@@ -82,7 +82,7 @@ export class DatetimeSlotPicker {
   }
 
   private setSlot() {
-    this.displayText = this.selectedDate + (this.selectedTime ? (' ' + this.selectedTime) : '');
+    this.displayText = this.selectedDate + (this.selectedTime ? (' - ' + this.selectedTime) : '');
     this.onSlotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTime});
     this.isPopped = false;
     this.isTimeSlotGridVisible = false;

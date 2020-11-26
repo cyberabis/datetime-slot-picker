@@ -32,6 +32,5 @@ export function generateTimeGrid(slot: Slot): TimeGrid[] {
             timeGrids.push(timeGrid);
         }
     }
-    console.log('Generated time grids: ', timeGrids);
     return timeGrids;
 }
