@@ -13,7 +13,7 @@ export function generateTimeGrid(slot: Slot): TimeGrid[] {
     //Determine number of columns
     //Determine number of grids
     if(times.length) {
-        let noOfColumns = times[0].length <= 8 ? 3 : 2;
+        let noOfColumns = times[0].length <= 8 ? 4 : 2;
         let noOfCells = noOfColumns * 7;
         let noOfGrids = Math.ceil(times.length/noOfCells);
         for(let gridCounter = 1; gridCounter <= noOfGrids; gridCounter++) {

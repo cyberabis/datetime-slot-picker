@@ -68,10 +68,17 @@ export class DatetimeSlotPicker {
       let slot = this.slots.find(s => s.date === this.selectedDate);
       this.timeGrids = generateTimeGrid(slot);
       this.selectedTime = undefined;
-      if(this.timeGrids && this.timeGrids.length) this.activeTimeGridPage = 1;
+      if(this.timeGrids && this.timeGrids.length) this.activeTimeGridPage = 0;
       this.isTimeSlotGridVisible = true;
     }
     else this.setSlot();
+  }
+
+  private setSelectedTime(timeText: string) {
+    if(timeText) {
+      this.selectedTime = timeText;
+      this.setSlot();
+    }
   }
 
   private setSlot() {
@@ -86,12 +93,24 @@ export class DatetimeSlotPicker {
     this.isTimeSlotGridVisible = false;
   }
 
+  private goBack() {
+    this.isTimeSlotGridVisible = false;
+  }
+
   private prevDateGrid() {
     if(this.activeDateGridPage > 0) this.activeDateGridPage--;
   }
 
   private nextDateGrid() {
     if(this.activeDateGridPage < this.dateGrids.length - 1) this.activeDateGridPage++;
+  }
+
+  private prevTimeGrid() {
+    if(this.activeTimeGridPage > 0) this.activeTimeGridPage--;
+  }
+
+  private nextTimeGrid() {
+    if(this.activeTimeGridPage < this.timeGrids.length - 1) this.activeTimeGridPage++;
   }
   
   private getTranslation(propertyName:string): string {
@@ -120,21 +139,19 @@ export class DatetimeSlotPicker {
           { !this.isTimeSlotGridVisible && this.dateGrids && this.dateGrids.length &&
             <table class="neo-grid neo-date-grid">
               <tr>
-                <th></th>
-                <th>
+                <th class="neo-left-end"></th>
+                <th colSpan={5} class="neo-center">
                   {this.activeDateGridPage > 0
                     ? <span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span>
                     : <span>&nbsp;</span>
                   }
-                </th>
-                <th colSpan={3}>{this.dateGrids[this.activeDateGridPage].monthYear}</th>
-                <th>
+                  {this.dateGrids[this.activeDateGridPage].monthYear}
                   {this.activeDateGridPage < (this.dateGrids.length - 1)
                     ? <span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span>
                     : <span>&nbsp;</span>
                   }
                 </th>
-                <th><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
+                <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
               <tr>
                 <td><span class="neo-dow">S</span></td>
@@ -167,7 +184,44 @@ export class DatetimeSlotPicker {
           }
           {/* TODO: Date Grid when no data - blank */}
           {/* TODO: Time Grid when data exists */}
-
+          { this.isTimeSlotGridVisible && this.timeGrids && this.timeGrids.length &&
+            <table class="neo-grid neo-time-grid">
+              <tr>
+                <th class="neo-left-end"><span class="neo-back" onClick={()=>this.goBack()}>&larr;</span></th>
+                <th class="neo-center" colSpan={6}>
+                  {this.activeTimeGridPage > 0
+                    ? <span class="neo-paginate" onClick={()=>this.prevTimeGrid()}>&lt;</span>
+                    : <span>&nbsp;</span>
+                  }
+                  {this.timeGrids[this.activeTimeGridPage].dateText}
+                  {this.activeTimeGridPage < (this.timeGrids.length - 1)
+                    ? <span class="neo-paginate" onClick={()=>this.nextTimeGrid()}>&gt;</span>
+                    : <span>&nbsp;</span>
+                  }
+                </th>
+                <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
+              </tr>
+              {this.timeGrids[this.activeTimeGridPage].rows.map(row=>{
+                return <tr>
+                  {row.times.map(time=>{
+                    return time
+                      ? <td
+                          colSpan = {row.times.length === 2 ? 4 : 2}
+                          class={time.timeText == this.selectedTime ? 'neo-cell neo-cell-selected' : 'neo-cell neo-cell-enabled'} 
+                          >
+                          <span 
+                            class={time.timeText == this.selectedTime ? 'neo-time neo-time-selected' : 'neo-time neo-time-enabled'}
+                            onClick={()=>this.setSelectedTime(time.timeText)}
+                            >
+                            {time.timeText}
+                          </span>
+                        </td>
+                      : <td colSpan = {row.times.length === 2 ? 4 : 2}>&nbsp;</td>
+                  })}
+                </tr>
+              })}
+            </table>
+          }
           {/* TODO: Time Grid when no data - blank */}
         </div>
       }
