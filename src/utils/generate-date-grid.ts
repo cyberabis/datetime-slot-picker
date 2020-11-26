@@ -7,7 +7,6 @@ const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export function generateDateGrid(slots: Slot[]): DateGrid[] {
     let dateGrids: DateGrid[] = [];
-    //TODO 
     //Validate formats and consistency
     //Get min and max date
     //Create grid for each month 
@@ -73,6 +72,5 @@ export function generateDateGrid(slots: Slot[]): DateGrid[] {
             }
         } while(y1 < y2 || (y1 === y2 && m1 <= m2) )
     }
-    //console.log('Date Grids: ', JSON.stringify(dateGrids, null, 2));
     return dateGrids;
 }

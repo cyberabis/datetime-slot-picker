@@ -2,7 +2,9 @@ import { Component, Prop, h, State, Event, EventEmitter, Watch } from '@stencil/
 import { translations } from '../../utils/translations';
 import { Slot } from '../../models/slot';
 import { DateGrid } from '../../models/date-grid';
+import { TimeGrid } from '../../models/time-grid';
 import { generateDateGrid } from '../../utils/generate-date-grid';
+import { generateTimeGrid } from '../../utils/generate-time-grid';
 
 @Component({
   tag: 'datetime-slot-picker',
@@ -22,7 +24,9 @@ export class DatetimeSlotPicker {
   @State() activeDateGridPage: number;
   @State() dateGrids: DateGrid[];
   @State() selectedDate: string; //Eg: Wed, 25 Nov 2020
-  @State() selectedTimeSlot: string; //Eg: 10 AM, 10:00 AM, 10 AM - 11 AM, 10:00 AM - 11:00 AM
+  @State() activeTimeGridPage: number;
+  @State() timeGrids: TimeGrid[];
+  @State() selectedTime: string; //Eg: 10 AM, 10:00 AM, 10 AM - 11 AM, 10:00 AM - 11:00 AM
   @State() displayText: string;
 
   @Event() onSlotUpdate: EventEmitter;
@@ -38,7 +42,7 @@ export class DatetimeSlotPicker {
     //Reset the state
     this.isTimeSlotGridVisible = false;
     this.selectedDate = undefined;
-    this.selectedTimeSlot = undefined;
+    this.selectedTime = undefined;
     this.displayText = undefined;
     this.dateGrids = generateDateGrid(slots);
     if(this.dateGrids && this.dateGrids.length) this.activeDateGridPage = 0;
@@ -60,13 +64,17 @@ export class DatetimeSlotPicker {
 
   private setSelectedDate(dateText: string) {
     if(dateText) this.selectedDate = dateText;
-    if(this.slots.length && this.slots[0].timeSlots) this.isTimeSlotGridVisible;
+    if(this.slots.length && this.slots[0].timeSlots){
+      let slot = this.slots.find(s => s.date === this.selectedDate);
+      this.timeGrids = generateTimeGrid(slot);
+      this.isTimeSlotGridVisible = true;
+    }
     else this.setSlot();
   }
 
   private setSlot() {
-    this.displayText = this.selectedDate + (this.selectedTimeSlot ? (' ' + this.selectedTimeSlot) : '');
-    this.onSlotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTimeSlot});
+    this.displayText = this.selectedDate + (this.selectedTime ? (' ' + this.selectedTime) : '');
+    this.onSlotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTime});
     this.isPopped = false;
     this.isTimeSlotGridVisible = false;
   }
@@ -94,7 +102,6 @@ export class DatetimeSlotPicker {
       left: this.isNeoInputLeftSide ? '0px' : undefined,
       right: !this.isNeoInputLeftSide ? '0px' : undefined
     };
-    console.log('Date Grid: ', this.dateGrids[this.activeDateGridPage]);
     return <span class="neo-slot-picker">
       <input class="neo-input" type="text" readonly 
         placeholder={this.placeholder ? this.placeholder : 'Pick a time slot'} 
@@ -107,6 +114,7 @@ export class DatetimeSlotPicker {
         <div style={popupStyle} 
           class={this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above'}
           >
+          {/* Table Grid when data exists */}
           { !this.isTimeSlotGridVisible && this.dateGrids && this.dateGrids.length &&
             <table class="neo-grid neo-date-grid">
               <tr>
@@ -155,6 +163,10 @@ export class DatetimeSlotPicker {
               })}
             </table>
           }
+          {/* TODO: Table Grid when no data */}
+          {/* TODO: Time Grid when data exists */}
+
+          {/* TODO: Time Grid when no data */}
         </div>
       }
     </span>
