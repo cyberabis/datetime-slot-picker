@@ -11,6 +11,7 @@ export namespace Components {
         "language": string;
         "placeholder": string;
         "slots": Slot[];
+        "timeSlotsText": string;
     }
 }
 declare global {
@@ -30,6 +31,7 @@ declare namespace LocalJSX {
         "onOnSlotUpdate"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
         "slots"?: Slot[];
+        "timeSlotsText"?: string;
     }
     interface IntrinsicElements {
         "datetime-slot-picker": DatetimeSlotPicker;

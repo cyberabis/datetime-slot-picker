@@ -15,6 +15,7 @@ export class DatetimeSlotPicker {
   @Prop() language: string;
   @Prop() placeholder: string;
   @Prop() slots: Slot[];
+  @Prop() timeSlotsText: string;
   
   @State() isPopped: boolean;
   @State() isNeoInputAboveFold: boolean;
@@ -168,11 +169,9 @@ export class DatetimeSlotPicker {
                     return day
                       ? <td
                           class={!day.isEnabled ? 'neo-cell neo-cell-disabled' : (day.dateText == this.selectedDate ? 'neo-cell neo-cell-selected' : 'neo-cell neo-cell-enabled')} 
+                          onClick={()=>this.setSelectedDate(day.isEnabled ? day.dateText : undefined)}
                           >
-                          <span 
-                            class={!day.isEnabled ? 'neo-day neo-day-disabled' : (day.dateText == this.selectedDate ? 'neo-day neo-day-selected' : 'neo-day neo-day-enabled')}
-                            onClick={()=>this.setSelectedDate(day.isEnabled ? day.dateText : undefined)}
-                            >
+                          <span class={!day.isEnabled ? 'neo-day neo-day-disabled' : (day.dateText == this.selectedDate ? 'neo-day neo-day-selected' : 'neo-day neo-day-enabled')}>
                             {day.dayOfMonth}
                           </span>
                         </td>
@@ -193,7 +192,7 @@ export class DatetimeSlotPicker {
                     ? <span class="neo-paginate" onClick={()=>this.prevTimeGrid()}>&lt;</span>
                     : <span>&nbsp;</span>
                   }
-                  {this.timeGrids[this.activeTimeGridPage].dateText}
+                  {this.timeSlotsText ? this.timeSlotsText : this.timeGrids[this.activeTimeGridPage].dateText}
                   {this.activeTimeGridPage < (this.timeGrids.length - 1)
                     ? <span class="neo-paginate" onClick={()=>this.nextTimeGrid()}>&gt;</span>
                     : <span>&nbsp;</span>
@@ -208,11 +207,9 @@ export class DatetimeSlotPicker {
                       ? <td
                           colSpan = {row.times.length === 2 ? 4 : 2}
                           class={time.timeText == this.selectedTime ? 'neo-cell neo-cell-selected' : 'neo-cell neo-cell-enabled'} 
+                          onClick={()=>this.setSelectedTime(time.timeText)}
                           >
-                          <span 
-                            class={time.timeText == this.selectedTime ? 'neo-time neo-time-selected' : 'neo-time neo-time-enabled'}
-                            onClick={()=>this.setSelectedTime(time.timeText)}
-                            >
+                          <span class={time.timeText == this.selectedTime ? 'neo-time neo-time-selected' : 'neo-time neo-time-enabled'}>
                             {time.timeText}
                           </span>
                         </td>
