@@ -30,7 +30,7 @@ export class DatetimeSlotPicker {
   @State() selectedTime: string; //Eg: 10 AM, 10:00 AM, 10 AM - 11 AM, 10:00 AM - 11:00 AM
   @State() displayText: string;
 
-  @Event() onSlotUpdate: EventEmitter;
+  @Event() slotUpdate: EventEmitter;
 
   neoInput!: HTMLInputElement;
 
@@ -84,7 +84,7 @@ export class DatetimeSlotPicker {
 
   private setSlot() {
     this.displayText = this.selectedDate + (this.selectedTime ? (' - ' + this.selectedTime) : '');
-    this.onSlotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTime});
+    this.slotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTime});
     this.isPopped = false;
     this.isTimeSlotGridVisible = false;
   }
@@ -114,6 +114,7 @@ export class DatetimeSlotPicker {
     if(this.activeTimeGridPage < this.timeGrids.length - 1) this.activeTimeGridPage++;
   }
   
+  //TODO Use in more places, also take JSON from property
   private getTranslation(propertyName:string): string {
     return translations[this.language][propertyName];
   }
@@ -155,13 +156,13 @@ export class DatetimeSlotPicker {
                 <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
               <tr>
-                <td><span class="neo-dow">S</span></td>
-                <td><span class="neo-dow">M</span></td>
-                <td><span class="neo-dow">T</span></td>
-                <td><span class="neo-dow">W</span></td>
-                <td><span class="neo-dow">T</span></td>
-                <td><span class="neo-dow">F</span></td>
-                <td><span class="neo-dow">S</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Sun')}</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Mon')}</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Tue')}</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Wed')}</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Thu')}</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Fri')}</span></td>
+                <td><span class="neo-dow">{this.getTranslation('Sat')}</span></td>
               </tr>
               {this.dateGrids[this.activeDateGridPage].weeks.map(week=>{
                 return <tr>

@@ -28,7 +28,7 @@ declare global {
 declare namespace LocalJSX {
     interface DatetimeSlotPicker {
         "language"?: string;
-        "onOnSlotUpdate"?: (event: CustomEvent<any>) => void;
+        "onSlotUpdate"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
         "slots"?: Slot[];
         "timeSlotsText"?: string;
