@@ -40,27 +40,31 @@ export class DatetimeSlotPicker {
 
   @Watch('slots')
   private processSlots(slots: Slot[]) {
-    //Reset the state
-    this.isTimeSlotGridVisible = false;
-    this.selectedDate = undefined;
-    this.selectedTime = undefined;
-    this.displayText = undefined;
-    this.dateGrids = generateDateGrid(slots);
-    if(this.dateGrids && this.dateGrids.length) this.activeDateGridPage = 0;
+    if(this.slots) {
+      //Reset the state
+      this.isTimeSlotGridVisible = false;
+      this.selectedDate = undefined;
+      this.selectedTime = undefined;
+      this.displayText = undefined;
+      this.dateGrids = generateDateGrid(slots);
+      if(this.dateGrids && this.dateGrids.length) this.activeDateGridPage = 0;
+    }
   }
 
   private togglePopup() {
-    if(this.neoInput.getBoundingClientRect().top < window.innerHeight/2) 
-      this.isNeoInputAboveFold = true;
-    else 
-      this.isNeoInputAboveFold = false;
-    if(this.neoInput.getBoundingClientRect().left < window.innerWidth/2) 
-      this.isNeoInputLeftSide = true;
-    else 
-      this.isNeoInputLeftSide = false;
-    this.neoInputHeight = this.neoInput.getBoundingClientRect().bottom - this.neoInput.getBoundingClientRect().top;
-    this.isPopped = !this.isPopped;
-    this.isTimeSlotGridVisible = false;
+    if(this.slots) {
+      if(this.neoInput.getBoundingClientRect().top < window.innerHeight/2) 
+        this.isNeoInputAboveFold = true;
+      else 
+        this.isNeoInputAboveFold = false;
+      if(this.neoInput.getBoundingClientRect().left < window.innerWidth/2) 
+        this.isNeoInputLeftSide = true;
+      else 
+        this.isNeoInputLeftSide = false;
+      this.neoInputHeight = this.neoInput.getBoundingClientRect().bottom - this.neoInput.getBoundingClientRect().top;
+      this.isPopped = !this.isPopped;
+      this.isTimeSlotGridVisible = false;
+    }
   }
 
   private setSelectedDate(dateText: string) {
