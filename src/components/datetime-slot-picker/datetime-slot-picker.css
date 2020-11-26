@@ -37,21 +37,24 @@ td {
   font-size: small;
   min-width: 250px;
 }
-.neo-day > span {
+.neo-day {
   padding: 2px;
+}
+.neo-cell-enabled {
+  color: black;
+}
+.neo-cell-enabled:hover {
+  color: white;
+  background-color: black;
+}
+.neo-cell-selected {
+  color: white;
+  background-color: black;
+}
+.neo-day-enabled, .neo-day-selected {
+  cursor: pointer;
 }
 .neo-day-disabled {
   color: lightgray;
   cursor: not-allowed;
-}
-.neo-day-enabled {
-  color: black;
-  cursor: pointer;
-}
-.neo-day-selected {
-  color: white;
-  cursor: pointer;
-}
-.neo-selected-cell {
-  background-color: black;
 }
