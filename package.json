@@ -1,6 +1,6 @@
 {
   "name": "datetime-slot-picker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A webcomponent for date and time slot picker",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
