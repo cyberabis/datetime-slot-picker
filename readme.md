@@ -1,6 +1,6 @@
 # Usage and Live Demo
 
-https://jsbin.com/yihufeg/edit?html,output
+<a href="https://jsbin.com/yihufeg/edit?html,output" target="_blank">View JS Bin</a>
 
 # Datetime Slot Picker
 
