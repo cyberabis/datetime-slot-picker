@@ -68,15 +68,17 @@ export class DatetimeSlotPicker {
   }
 
   private setSelectedDate(dateText: string) {
-    if(dateText) this.selectedDate = dateText;
-    if(this.slots.length && this.slots[0].timeSlots){
-      let slot = this.slots.find(s => s.date === this.selectedDate);
-      this.timeGrids = generateTimeGrid(slot);
-      this.selectedTime = undefined;
-      if(this.timeGrids && this.timeGrids.length) this.activeTimeGridPage = 0;
-      this.isTimeSlotGridVisible = true;
+    if(dateText) {
+      this.selectedDate = dateText;
+      if(this.slots.length && this.slots[0].timeSlots){
+        let slot = this.slots.find(s => s.date === this.selectedDate);
+        this.timeGrids = generateTimeGrid(slot);
+        this.selectedTime = undefined;
+        if(this.timeGrids && this.timeGrids.length) this.activeTimeGridPage = 0;
+        this.isTimeSlotGridVisible = true;
+      }
+      else this.setSlot();
     }
-    else this.setSlot();
   }
 
   private setSelectedTime(timeText: string) {
