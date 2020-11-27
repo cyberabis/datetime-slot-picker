@@ -149,12 +149,12 @@ export class DatetimeSlotPicker {
                 <th colSpan={5} class="neo-center">
                   {this.activeDateGridPage > 0
                     ? <span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span>
-                    : <span>&nbsp;</span>
+                    : <span class="neo-paginate-hidden">&nbsp;</span>
                   }
                   {this.dateGrids[this.activeDateGridPage].monthYear}
                   {this.activeDateGridPage < (this.dateGrids.length - 1)
                     ? <span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span>
-                    : <span>&nbsp;</span>
+                    : <span class="neo-paginate-hidden">&nbsp;</span>
                   }
                 </th>
                 <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
@@ -195,12 +195,12 @@ export class DatetimeSlotPicker {
                 <th class="neo-center" colSpan={6}>
                   {this.activeTimeGridPage > 0
                     ? <span class="neo-paginate" onClick={()=>this.prevTimeGrid()}>&lt;</span>
-                    : <span>&nbsp;</span>
+                    : <span class="neo-paginate-hidden">&nbsp;</span>
                   }
                   {this.timeSlotsText ? this.timeSlotsText : this.timeGrids[this.activeTimeGridPage].dateText}
                   {this.activeTimeGridPage < (this.timeGrids.length - 1)
                     ? <span class="neo-paginate" onClick={()=>this.nextTimeGrid()}>&gt;</span>
-                    : <span>&nbsp;</span>
+                    : <span class="neo-paginate-hidden">&nbsp;</span>
                   }
                 </th>
                 <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>

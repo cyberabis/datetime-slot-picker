@@ -21,6 +21,9 @@
   padding: 2px 10px;
   cursor: pointer;
 }
+.neo-paginate-hidden{
+  padding: 2px 10px;
+}
 table, th, td {
   border: 1px solid whitesmoke;
   border-collapse: collapse;
