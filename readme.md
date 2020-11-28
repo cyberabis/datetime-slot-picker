@@ -1,3 +1,11 @@
+# Datetime Slot Picker
+
+This is a Web Component for Date and Time Slot Picker. This project is a standalone Web Component using Stencil.
+
+## NPM Repository
+
+https://www.npmjs.com/package/datetime-slot-picker
+
 # Usage and Live Demo
 
 [View JS Bin](https://jsbin.com/yihufeg/edit?html,output)
@@ -52,14 +60,6 @@ Time formats: (Pick a format and all time slots should be the same format)
         }
     ];
 ```
-
-# Datetime Slot Picker
-
-This is a Web Component for Date and Time Slot Picker. This project is a standalone Web Component using Stencil.
-
-## NPM Repository
-
-https://www.npmjs.com/package/datetime-slot-picker
 
 ## Using this component
 
