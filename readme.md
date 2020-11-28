@@ -20,7 +20,7 @@ The properties are optional, you can use them to pass custom text.
 
 Add the below code inside <script></script> in your HTML. Ensure the date and time format is as stated below.
 
-Date format: ddd, D MMM YYYY
+Date format: ddd, D MMM YYYY (Thu, 26 Nov 2020)
 
 Time formats: (Pick a format and all time slots should be the same format)
 - H A (10 AM)
