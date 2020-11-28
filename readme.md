@@ -85,6 +85,8 @@ There are three strategies we recommend for using web components built with Sten
 To run the project locally, run:
 
 ```bash
+gh repo clone cyberabis/datetime-slot-picker
+cd datetime-slot-picker
 npm install
 npm start
 ```
