@@ -4,6 +4,8 @@
 
 ## Using the component in HTML
 
+The properties are optional, you can use them to pass custom text.
+
 ```
 <datetime-slot-picker 
       language="en" 
@@ -16,7 +18,15 @@
 
 ## Initializing slots & listening to slot changes in Javascript
 
-Add the below code inside <script></script> in your HTML.
+Add the below code inside <script></script> in your HTML. Ensure the date and time format is as stated below.
+
+Date format: ddd, D MMM YYYY
+
+Time formats: (Pick a format and all time slots should be the same format)
+- H A (10 AM)
+- H:mm A (10:00 AM)
+- H A - H A (10 AM - 11 AM)
+- H:mm A - H:mm A (10:00 AM - 11:00 AM)
 
 ```javascript
     const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
