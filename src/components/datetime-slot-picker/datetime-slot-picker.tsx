@@ -19,6 +19,7 @@ export class DatetimeSlotPicker {
   @Prop() slots: Slot[] = [];
   @Prop() language: string = 'en';
   @Prop() translations: Translations = builtInTranslations;
+  @Prop() amPmDisabled: boolean = false;
   
   @State() isPopped: boolean;
   @State() isNeoInputAboveFold: boolean;
@@ -98,7 +99,8 @@ export class DatetimeSlotPicker {
     translatedSelectedDate = this.getTranslation(selectedDateParts[0].substring(0, selectedDateParts[0].length - 1)) + ', ' +
       selectedDateParts[1] + ' ' + this.getTranslation(selectedDateParts[2]) + ' ' + selectedDateParts[3];
     if (this.selectedTime) {
-      translatedSelectedTime = this.selectedTime.replace(/AM/g, this.getTranslation('AM'));
+      translatedSelectedTime = this.formatTimeSlot(this.selectedTime);
+      translatedSelectedTime = translatedSelectedTime.replace(/AM/g, this.getTranslation('AM'));
       translatedSelectedTime = translatedSelectedTime.replace(/PM/g, this.getTranslation('PM'));
     }
     this.displayText = translatedSelectedDate + (this.selectedTime ? (', ' + translatedSelectedTime) : '');
@@ -137,10 +139,40 @@ export class DatetimeSlotPicker {
     if(this.activeTimeGridPage < this.timeGrids.length - 1) this.activeTimeGridPage++;
   }
   
-  //TODO Use in more places, also take JSON from property
   private getTranslation(propertyName:string): string {
     if (this.translations[this.language]) return this.translations[this.language][propertyName];
     else return builtInTranslations['en'][propertyName]; //use default
+  }
+
+  private formatTimeSlot(timeText: string): string {
+    //Util function - starts
+    let changeToHhmm = (timeTextPart:string) : string => {
+      let justTimePart = timeTextPart.replace(/ AM/g, '')
+      justTimePart = justTimePart.replace(/ PM/g, '')
+      if(timeTextPart.indexOf('AM') > -1) {
+        let hourPart = justTimePart.split(':')[0].trim();
+        if(hourPart.length === 1) hourPart = '0' + hourPart;
+        if(hourPart.indexOf('12') === 0) hourPart = '00'
+        return hourPart + ':' + (justTimePart.split(':')[1] ? justTimePart.split(':')[1].trim() : '00');
+      } else if(timeTextPart.indexOf('PM') > -1) {
+        let hourPart = justTimePart.split(':')[0].trim();
+        if(hourPart.indexOf('12') !== 0) hourPart = (parseInt(hourPart) + 12).toString();
+        return hourPart + ':' + (justTimePart.split(':')[1] ? justTimePart.split(':')[1].trim() : '00');
+      }
+    };
+    //Util function - ends
+    let formattedTimeText = timeText;
+    if(this.amPmDisabled) {
+      if(timeText.indexOf('-') > -1) {
+        let timeTextParts: string[];
+        timeTextParts = timeText.split('-');
+        timeTextParts = timeTextParts.map(timeTextPart => changeToHhmm(timeTextPart));
+        formattedTimeText = timeTextParts[0] + ' - ' + timeTextParts[1];
+      } else {
+        formattedTimeText = changeToHhmm(timeText);
+      }
+    }
+    return formattedTimeText;
   }
 
   render() {
@@ -249,7 +281,8 @@ export class DatetimeSlotPicker {
                   {row.times.map(time=>{
                     let translatedTimeText;
                     if(time) {
-                      translatedTimeText = time.timeText.replace(/AM/g, this.getTranslation('AM'));
+                      translatedTimeText = this.formatTimeSlot(time.timeText);
+                      translatedTimeText = translatedTimeText.replace(/AM/g, this.getTranslation('AM'));
                       translatedTimeText = translatedTimeText.replace(/PM/g, this.getTranslation('PM'));
                     }
                     return time

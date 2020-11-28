@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property        | Attribute         | Description | Type     | Default                    |
-| --------------- | ----------------- | ----------- | -------- | -------------------------- |
-| `language`      | `language`        |             | `string` | `'en'`                     |
-| `noSlotsText`   | `no-slots-text`   |             | `string` | `'No slots are available'` |
-| `placeholder`   | `placeholder`     |             | `string` | `'Pick a time slot'`       |
-| `slots`         | --                |             | `Slot[]` | `[]`                       |
-| `timeSlotsText` | `time-slots-text` |             | `string` | `'Time Slots'`             |
+| Property        | Attribute         | Description | Type           | Default                    |
+| --------------- | ----------------- | ----------- | -------------- | -------------------------- |
+| `amPmDisabled`  | `am-pm-disabled`  |             | `boolean`      | `false`                    |
+| `language`      | `language`        |             | `string`       | `'en'`                     |
+| `noSlotsText`   | `no-slots-text`   |             | `string`       | `'No slots are available'` |
+| `placeholder`   | `placeholder`     |             | `string`       | `'Pick a time slot'`       |
+| `slots`         | --                |             | `Slot[]`       | `[]`                       |
+| `timeSlotsText` | `time-slots-text` |             | `string`       | `'Time'`                   |
+| `translations`  | --                |             | `Translations` | `builtInTranslations`      |
 
 
 ## Events
