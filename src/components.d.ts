@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Slot } from "./models/slot";
+import { Translations } from "./models/translations";
 export namespace Components {
     interface DatetimeSlotPicker {
         "language": string;
@@ -13,6 +14,7 @@ export namespace Components {
         "placeholder": string;
         "slots": Slot[];
         "timeSlotsText": string;
+        "translations": Translations;
     }
 }
 declare global {
@@ -34,6 +36,7 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         "slots"?: Slot[];
         "timeSlotsText"?: string;
+        "translations"?: Translations;
     }
     interface IntrinsicElements {
         "datetime-slot-picker": DatetimeSlotPicker;

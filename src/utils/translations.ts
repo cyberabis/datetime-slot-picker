@@ -1,4 +1,4 @@
-export let translations = {
+export let builtInTranslations = {
   en: {
     Mon: 'M',
     Tue: 'T',

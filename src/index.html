@@ -10,10 +10,10 @@
   </head>
   <body>
     <datetime-slot-picker 
-      language="en" 
       placeholder="Pick a time slot" 
-      time-slots-text="Time Slots"
-      no-slots-text="No slots are available"
+      time-slots-text="Time"
+      no-slots-text="No slots are available" 
+      language="en"
       >
     </datetime-slot-picker>
     <script>
@@ -23,40 +23,65 @@
         {
           date: 'Thu, 26 Nov 2020',
           timeSlots: [
-            '10:00 AM',
-            '11:00 AM',
-            '4:00 PM',
-            '5:00 PM'
+            '10 AM - 11 AM',
+            '11 AM - 12 PM',
+            '4 PM - 5 PM',
+            '5 PM - 6 PM'
           ]
         },
         {
           date: 'Fri, 27 Nov 2020',
           timeSlots: [
-            '10:00 AM',
-            '11:00 AM',
-            '4:00 PM',
-            '5:00 PM'
+            '10 AM - 11 AM',
+            '11 AM - 12 PM',
+            '4 PM - 5 PM',
+            '5 PM - 6 PM'
           ]
         },
         {
           date: 'Mon, 30 Nov 2020',
           timeSlots: [
-            '10:00 AM',
-            '11:00 AM',
-            '4:00 PM',
-            '5:00 PM'
+            '10 AM - 11 AM',
+            '11 AM - 12 PM',
+            '4 PM - 5 PM',
+            '5 PM - 6 PM'
           ]
         },
         {
           date: 'Tue, 1 Dec 2020',
           timeSlots: [
-            '10:00 AM',
-            '11:00 AM',
-            '4:00 PM',
-            '5:00 PM'
+            '10 AM - 11 AM',
+            '11 AM - 12 PM',
+            '4 PM - 5 PM',
+            '5 PM - 6 PM'
           ]
         }
       ];
+      datetimeSlotPicker.translations = {
+        en: {
+          Mon: 'Mo',
+          Tue: 'Tu',
+          Wed: 'We',
+          Thu: 'Th',
+          Fri: 'Fr',
+          Sat: 'Sa',
+          Sun: 'Su',
+          AM: 'am',
+          PM: 'pm',
+          Jan: '1',
+          Feb: '2',
+          Mar: '3',
+          Apr: '4',
+          May: '5',
+          Jun: '6',
+          Jul: '7',
+          Aug: '8',
+          Sep: '9',
+          Oct: '10',
+          Nov: '11',
+          Dec: '12'
+        }
+      };
     </script>
   </body>
 </html>

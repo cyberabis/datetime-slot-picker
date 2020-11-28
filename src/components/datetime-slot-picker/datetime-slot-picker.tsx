@@ -1,8 +1,9 @@
 import { Component, Prop, h, State, Event, EventEmitter, Watch } from '@stencil/core';
-import { translations } from '../../utils/translations';
+import { builtInTranslations } from '../../utils/translations';
 import { Slot } from '../../models/slot';
 import { DateGrid } from '../../models/date-grid';
 import { TimeGrid } from '../../models/time-grid';
+import { Translations } from '../../models/translations';
 import { generateDateGrid } from '../../utils/generate-date-grid';
 import { generateTimeGrid } from '../../utils/generate-time-grid';
 
@@ -11,12 +12,13 @@ import { generateTimeGrid } from '../../utils/generate-time-grid';
   styleUrl: 'datetime-slot-picker.css'
 })
 export class DatetimeSlotPicker {
-
-  @Prop() language: string = 'en';
+  
   @Prop() placeholder: string = 'Pick a time slot';
-  @Prop() slots: Slot[] = [];
-  @Prop() timeSlotsText: string = 'Time Slots';
+  @Prop() timeSlotsText: string = 'Time';
   @Prop() noSlotsText: string = 'No slots are available';
+  @Prop() slots: Slot[] = [];
+  @Prop() language: string = 'en';
+  @Prop() translations: Translations = builtInTranslations;
   
   @State() isPopped: boolean;
   @State() isNeoInputAboveFold: boolean;
@@ -90,8 +92,22 @@ export class DatetimeSlotPicker {
   }
 
   private setSlot() {
-    this.displayText = this.selectedDate + (this.selectedTime ? (', ' + this.selectedTime) : '');
-    this.slotUpdate.emit({date: this.selectedDate, timeSlot: this.selectedTime});
+    let translatedSelectedDate: string, translatedSelectedTime: string;
+    let selectedDateParts = this.selectedDate.split(' ');
+    console.log(selectedDateParts);
+    translatedSelectedDate = this.getTranslation(selectedDateParts[0].substring(0, selectedDateParts[0].length - 1)) + ', ' +
+      selectedDateParts[1] + ' ' + this.getTranslation(selectedDateParts[2]) + ' ' + selectedDateParts[3];
+    if (this.selectedTime) {
+      translatedSelectedTime = this.selectedTime.replace(/AM/g, this.getTranslation('AM'));
+      translatedSelectedTime = translatedSelectedTime.replace(/PM/g, this.getTranslation('PM'));
+    }
+    this.displayText = translatedSelectedDate + (this.selectedTime ? (', ' + translatedSelectedTime) : '');
+    this.slotUpdate.emit({
+      date: this.selectedDate, 
+      timeSlot: this.selectedTime,
+      translatedDate: translatedSelectedDate,
+      translatedTimeSlot: translatedSelectedTime
+    });
     this.isPopped = false;
     this.isTimeSlotGridVisible = false;
   }
@@ -123,7 +139,8 @@ export class DatetimeSlotPicker {
   
   //TODO Use in more places, also take JSON from property
   private getTranslation(propertyName:string): string {
-    return translations[this.language][propertyName];
+    if (this.translations[this.language]) return this.translations[this.language][propertyName];
+    else return builtInTranslations['en'][propertyName]; //use default
   }
 
   render() {
@@ -132,6 +149,7 @@ export class DatetimeSlotPicker {
       left: this.isNeoInputLeftSide ? '0px' : undefined,
       right: !this.isNeoInputLeftSide ? '0px' : undefined
     };
+    let activeMonthYear: string[] = this.dateGrids[this.activeDateGridPage].monthYear.split(' ');
     return <span class="neo-slot-picker">
       <input class="neo-input" type="text" readonly 
         placeholder={this.placeholder} 
@@ -154,7 +172,7 @@ export class DatetimeSlotPicker {
                     ? <span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span>
                     : <span class="neo-paginate-hidden">&nbsp;</span>
                   }
-                  {this.dateGrids[this.activeDateGridPage].monthYear}
+                  {this.getTranslation(activeMonthYear[0]) + ' ' + activeMonthYear[1]}
                   {this.activeDateGridPage < (this.dateGrids.length - 1)
                     ? <span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span>
                     : <span class="neo-paginate-hidden">&nbsp;</span>
@@ -229,6 +247,11 @@ export class DatetimeSlotPicker {
               {this.timeGrids[this.activeTimeGridPage].rows.map(row=>{
                 return <tr>
                   {row.times.map(time=>{
+                    let translatedTimeText;
+                    if(time) {
+                      translatedTimeText = time.timeText.replace(/AM/g, this.getTranslation('AM'));
+                      translatedTimeText = translatedTimeText.replace(/PM/g, this.getTranslation('PM'));
+                    }
                     return time
                       ? <td
                           colSpan = {row.times.length === 2 ? 4 : 2}
@@ -236,7 +259,7 @@ export class DatetimeSlotPicker {
                           onClick={()=>this.setSelectedTime(time.timeText)}
                           >
                           <span class={time.timeText == this.selectedTime ? 'neo-time neo-time-selected' : 'neo-time neo-time-enabled'}>
-                            {time.timeText}
+                            {translatedTimeText}
                           </span>
                         </td>
                       : <td colSpan = {row.times.length === 2 ? 4 : 2}>&nbsp;</td>
