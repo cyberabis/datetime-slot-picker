@@ -75,3 +75,9 @@ td {
 .neo-right-end {
   border-left: 0px;
 }
+.neo-empty-grid th, .neo-empty-grid td {
+  border: 1px solid white;
+}
+.neo-no-slots-text {
+  color: gray;
+}

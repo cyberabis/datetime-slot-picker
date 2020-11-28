@@ -9,6 +9,7 @@ import { Slot } from "./models/slot";
 export namespace Components {
     interface DatetimeSlotPicker {
         "language": string;
+        "noSlotsText": string;
         "placeholder": string;
         "slots": Slot[];
         "timeSlotsText": string;
@@ -28,6 +29,7 @@ declare global {
 declare namespace LocalJSX {
     interface DatetimeSlotPicker {
         "language"?: string;
+        "noSlotsText"?: string;
         "onSlotUpdate"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
         "slots"?: Slot[];

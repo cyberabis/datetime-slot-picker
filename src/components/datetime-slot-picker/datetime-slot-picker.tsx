@@ -12,10 +12,11 @@ import { generateTimeGrid } from '../../utils/generate-time-grid';
 })
 export class DatetimeSlotPicker {
 
-  @Prop() language: string;
-  @Prop() placeholder: string;
-  @Prop() slots: Slot[];
-  @Prop() timeSlotsText: string;
+  @Prop() language: string = 'en';
+  @Prop() placeholder: string = 'Pick a time slot';
+  @Prop() slots: Slot[] = [];
+  @Prop() timeSlotsText: string = 'Time Slots';
+  @Prop() noSlotsText: string = 'No slots are available';
   
   @State() isPopped: boolean;
   @State() isNeoInputAboveFold: boolean;
@@ -133,7 +134,7 @@ export class DatetimeSlotPicker {
     };
     return <span class="neo-slot-picker">
       <input class="neo-input" type="text" readonly 
-        placeholder={this.placeholder ? this.placeholder : 'Pick a time slot'} 
+        placeholder={this.placeholder} 
         value={this.displayText} 
         onClick={()=>this.togglePopup()}
         ref={(el) => this.neoInput = el as HTMLInputElement}
@@ -144,7 +145,7 @@ export class DatetimeSlotPicker {
           class={this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above'}
           >
           {/* Date Grid when data exists */}
-          { !this.isTimeSlotGridVisible && this.dateGrids && this.dateGrids.length &&
+          { !this.isTimeSlotGridVisible && this.dateGrids && this.dateGrids.length > 0 &&
             <table class="neo-grid neo-date-grid">
               <tr>
                 <th class="neo-left-end"></th>
@@ -188,9 +189,27 @@ export class DatetimeSlotPicker {
               })}
             </table>
           }
-          {/* TODO: Date Grid when no data - blank */}
-          {/* TODO: Time Grid when data exists */}
-          { this.isTimeSlotGridVisible && this.timeGrids && this.timeGrids.length &&
+          { !this.isTimeSlotGridVisible && this.dateGrids && !this.dateGrids.length &&
+            <table class="neo-grid neo-empty-grid">
+              <tr>
+              <th class="neo-left-end"></th>
+                <th colSpan={5} class="neo-center">
+                  &nbsp;
+                </th>
+                <th class="neo-right-end">
+                  <span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span>
+                </th>
+              </tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7} class="neo-no-slots-text">{this.noSlotsText}</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+            </table>
+          }
+          { this.isTimeSlotGridVisible && this.timeGrids && this.timeGrids.length > 0 &&
             <table class="neo-grid neo-time-grid">
               <tr>
                 <th class="neo-left-end"><span class="neo-back" onClick={()=>this.goBack()}>&larr;</span></th>
@@ -199,7 +218,7 @@ export class DatetimeSlotPicker {
                     ? <span class="neo-paginate" onClick={()=>this.prevTimeGrid()}>&lt;</span>
                     : <span class="neo-paginate-hidden">&nbsp;</span>
                   }
-                  {this.timeSlotsText ? this.timeSlotsText : this.timeGrids[this.activeTimeGridPage].dateText}
+                  {this.timeSlotsText}
                   {this.activeTimeGridPage < (this.timeGrids.length - 1)
                     ? <span class="neo-paginate" onClick={()=>this.nextTimeGrid()}>&gt;</span>
                     : <span class="neo-paginate-hidden">&nbsp;</span>
@@ -226,7 +245,26 @@ export class DatetimeSlotPicker {
               })}
             </table>
           }
-          {/* TODO: Time Grid when no data - blank */}
+          { this.isTimeSlotGridVisible && this.timeGrids && !this.timeGrids.length &&
+            <table class="neo-grid neo-empty-grid">
+              <tr>
+                <th class="neo-left-end"><span class="neo-back" onClick={()=>this.goBack()}>&larr;</span></th>
+                <th colSpan={5} class="neo-center">
+                  &nbsp;
+                </th>
+                <th class="neo-right-end">
+                  <span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span>
+                </th>
+              </tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7} class="neo-no-slots-text">{this.noSlotsText}</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+              <tr><td colSpan={7}>&nbsp;</td></tr>
+            </table>
+          }
         </div>
       }
     </span>

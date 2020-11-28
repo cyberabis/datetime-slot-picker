@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <title>Stencil Component Starter</title>
+    <title>A webcomponent for date and time slot picker</title>
 
     <script type="module" src="/build/datetime-slot-picker.esm.js"></script>
     <script nomodule src="/build/datetime-slot-picker.js"></script>
@@ -11,8 +11,9 @@
   <body>
     <datetime-slot-picker 
       language="en" 
-      placeholder="Pick a convenient time slot" 
+      placeholder="Pick a time slot" 
       time-slots-text="Time Slots"
+      no-slots-text="No slots are available"
       >
     </datetime-slot-picker>
     <script>
