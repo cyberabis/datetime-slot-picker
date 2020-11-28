@@ -181,7 +181,9 @@ export class DatetimeSlotPicker {
       left: this.isNeoInputLeftSide ? '0px' : undefined,
       right: !this.isNeoInputLeftSide ? '0px' : undefined
     };
-    let activeMonthYear: string[] = this.dateGrids[this.activeDateGridPage].monthYear.split(' ');
+    let activeMonthYear: string[];
+    if (this.dateGrids && this.dateGrids.length > 0) 
+      activeMonthYear = this.dateGrids[this.activeDateGridPage].monthYear.split(' ');
     return <span class="neo-slot-picker">
       <input class="neo-input" type="text" readonly 
         placeholder={this.placeholder} 
