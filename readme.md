@@ -69,7 +69,7 @@ Supported input time formats: (Pick a format and all time slots should be the sa
 
 ```javascript
     const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
-    datetimeSlotPicker.addEventListener('slotUpdate', event => { console.log('Updated Slot: ', event.detail) });
+    datetimeSlotPicker.addEventListener('slotUpdate', function(event){ console.log('Updated Slot: ', event.detail) });
     datetimeSlotPicker.slots = [
         {
             date: 'Thu, 26 Nov 2020',
@@ -96,7 +96,7 @@ To pass translations, also set the translations property as shown below. You can
 
 ```javascript
     const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
-    datetimeSlotPicker.addEventListener('slotUpdate', event => { console.log('Updated Slot: ', event.detail) });
+    datetimeSlotPicker.addEventListener('slotUpdate', function(event){ console.log('Updated Slot: ', event.detail) });
     datetimeSlotPicker.slots = [
         {
             date: 'Thu, 26 Nov 2020',
