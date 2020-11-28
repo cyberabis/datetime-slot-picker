@@ -24,7 +24,7 @@ The properties are optional, you can use them to pass custom text.
 ```
 <datetime-slot-picker 
       placeholder="Pick a time slot" 
-      time-slots-text="Time Slots"
+      time-slots-text="Time"
       no-slots-text="No slots are available"
       >
 </datetime-slot-picker>
@@ -35,7 +35,7 @@ To display time slots in HH:mm format, pass the am-pm-disabled property
 ```
 <datetime-slot-picker 
       placeholder="Pick a time slot" 
-      time-slots-text="Time Slots"
+      time-slots-text="Time"
       no-slots-text="No slots are available" 
       am-pm-disabled
       >
@@ -47,7 +47,7 @@ If you are passing translations (using Javascript as shown in the later section)
 ```
 <datetime-slot-picker 
       placeholder="Pick a time slot" 
-      time-slots-text="Time Slots"
+      time-slots-text="Time"
       no-slots-text="No slots are available" 
       language="en"
       >
