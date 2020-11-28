@@ -212,7 +212,7 @@ export class DatetimeSlotPicker {
                 </th>
                 <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
-              <tr>
+              <tr class="neo-equal-width">
                 <td><span class="neo-dow">{this.getTranslation('Sun')}</span></td>
                 <td><span class="neo-dow">{this.getTranslation('Mon')}</span></td>
                 <td><span class="neo-dow">{this.getTranslation('Tue')}</span></td>
@@ -222,7 +222,7 @@ export class DatetimeSlotPicker {
                 <td><span class="neo-dow">{this.getTranslation('Sat')}</span></td>
               </tr>
               {this.dateGrids[this.activeDateGridPage].weeks.map(week=>{
-                return <tr>
+                return <tr  class="neo-equal-width">
                   {week.days.map(day=>{
                     return day
                       ? <td
@@ -277,7 +277,7 @@ export class DatetimeSlotPicker {
                 <th class="neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
               {this.timeGrids[this.activeTimeGridPage].rows.map(row=>{
-                return <tr>
+                return <tr class="neo-equal-width">
                   {row.times.map(time=>{
                     let translatedTimeText;
                     if(time) {
