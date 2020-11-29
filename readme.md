@@ -9,7 +9,7 @@ When "timeSlots" is not passed, the component acts as a pure date picker.
 This date and time slot picker is useful for below cases:
 - If you have a set of dates that alone should be available for user input
 - If you also want to display a custom time slot along with the date, eg: Sat, 28 Nov 2020, 10 AM - 11 AM.
-- Useful for scheduling an appointment, choosing a delivery time, etc.
+- Useful for appointment booking, choosing a delivery time, restaurant reservation, etc.
 - Supports multi language translations. You can pass your own translations and display text.
 - Supports displaying time slots in multiple formats: Eg: 4 PM, 4:00 PM, 16:00, 4 PM - 5 PM, 4:00 PM - 5:00 PM, 16:00 - 17:00.
 
@@ -119,13 +119,13 @@ To pass translations, also set the translations property as shown below. You can
     ];
     datetimeSlotPicker.translations = {
         en: {
-            Mon: 'M',
-            Tue: 'T',
-            Wed: 'W',
-            Thu: 'T',
-            Fri: 'F',
-            Sat: 'S',
-            Sun: 'S',
+            Mon: 'Mon',
+            Tue: 'Tue',
+            Wed: 'Wed',
+            Thu: 'Thu',
+            Fri: 'Fri',
+            Sat: 'Sat',
+            Sun: 'Sun',
             AM: 'AM',
             PM: 'PM',
             Jan: 'Jan',
@@ -150,7 +150,7 @@ There are three strategies we recommend for using web components built with Sten
 
 ### Script tag
 
-- Put a script tag similar to this `<script src='https://unpkg.com/datetime-slot-picker@latest/dist/datetime-slot-picker/datetime-slot-picker.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/datetime-slot-picker/dist/datetime-slot-picker/datetime-slot-picker.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
