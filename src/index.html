@@ -11,12 +11,22 @@
   <body>
     <datetime-slot-picker 
       placeholder="Pick a time slot" 
+      time-slots-text="Time Slot"
+      no-slots-text="No slots are available" 
+      language="en"
+      >
+    </datetime-slot-picker>
+    <!-- ALL OPTIONS VERSION
+    <datetime-slot-picker 
+      placeholder="Pick a time slot" 
       time-slots-text="Time"
       no-slots-text="No slots are available" 
       language="en"
       am-pm-disabled
+      dates-hidden-when-times-shown
       >
     </datetime-slot-picker>
+    -->
     <script>
       const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
       datetimeSlotPicker.addEventListener('slotUpdate', function(event){ console.log('Updated Slot: ', event.detail) });
@@ -26,8 +36,14 @@
           timeSlots: [
             '10 AM - 11 AM',
             '11 AM - 12 PM',
+            '12 PM - 1 PM',
+            '1 PM - 2 PM',
             '4 PM - 5 PM',
-            '5 PM - 6 PM'
+            '5 PM - 6 PM',
+            '6 PM - 7 PM',
+            '7 PM - 8 PM',
+            '8 PM - 9 PM',
+            '9 PM - 10 PM',
           ]
         },
         {
@@ -42,10 +58,6 @@
         {
           date: 'Mon, 30 Nov 2020',
           timeSlots: [
-            '10 AM - 11 AM',
-            '11 AM - 12 PM',
-            '4 PM - 5 PM',
-            '5 PM - 6 PM'
           ]
         },
         {

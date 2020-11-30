@@ -43,9 +43,11 @@ td {
 }
 .neo-right-end {
   text-align: right;
+  width: 15%;
 }
 .neo-left-end {
   text-align: left;
+  width: 15%;
 }
 .neo-grid {
   font-size: small;
@@ -57,9 +59,11 @@ td {
 .neo-cell-enabled {
   color: black;
 }
-.neo-cell-enabled:hover {
-  color: white;
-  background-color: black;
+@media only screen and (min-width: 768px) {
+  .neo-cell-enabled:hover {
+    color: white;
+    background-color: black;
+  }
 }
 .neo-cell-selected {
   color: white;

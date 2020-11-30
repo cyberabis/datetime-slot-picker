@@ -1,7 +1,7 @@
 import { Slot } from '../models/slot';
 import { TimeGrid, TimeRow } from '../models/time-grid';
 
-export function generateTimeGrid(slot: Slot): TimeGrid[] {
+export function generateTimeGrid(slot: Slot, noOfRows: number): TimeGrid[] {
     let timeGrids: TimeGrid[] = [];
     let times = slot.timeSlots.filter(ts=>{
         let isValid = true;
@@ -14,14 +14,14 @@ export function generateTimeGrid(slot: Slot): TimeGrid[] {
     //Determine number of grids
     if(times.length) {
         let noOfColumns = times[0].length <= 8 ? 4 : 2;
-        let noOfCells = noOfColumns * 7;
+        let noOfCells = noOfColumns * noOfRows;
         let noOfGrids = Math.ceil(times.length/noOfCells);
         for(let gridCounter = 1; gridCounter <= noOfGrids; gridCounter++) {
             let timeGrid:TimeGrid = {
                 dateText: slot.date.substring(5),
                 rows: []
             };
-            for(let rowCounter = 1; rowCounter <= 7; rowCounter++) {
+            for(let rowCounter = 1; rowCounter <= noOfRows; rowCounter++) {
                 let row:TimeRow = {times: []};
                 for(let columnCounter = 1; columnCounter <= noOfColumns; columnCounter++) {
                     let time = times.shift();

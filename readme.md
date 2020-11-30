@@ -1,6 +1,6 @@
 # Datetime Slot Picker
 
-This is a Web Component for Date and Time Slot Picker. This project is a standalone Web Component using Stencil.
+This is a Web Component for Date and Time Slot Picker. This project is a standalone Web Component built using StencilJS.
 
 You have to pass in dates and time slots that you want to display.
 
