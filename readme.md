@@ -30,7 +30,7 @@ The properties are optional, you can use them to pass custom text.
 </datetime-slot-picker>
 ```
 
-To display time slots in HH:mm format, pass the am-pm-disabled property
+To display time slots in HH:mm format, pass the "am-pm-disabled" property. The "dates-hidden-when-times-shown" property can be used if you would like to make the popup more compact, when time slots are shown the date calendar will be hidden.
 
 ```
 <datetime-slot-picker 
@@ -38,18 +38,7 @@ To display time slots in HH:mm format, pass the am-pm-disabled property
       time-slots-text="Time"
       no-slots-text="No slots are available" 
       am-pm-disabled
-      >
-</datetime-slot-picker>
-```
-
-If you are passing translations (using Javascript as shown in the later section), you can set the language code
-
-```
-<datetime-slot-picker 
-      placeholder="Pick a time slot" 
-      time-slots-text="Time"
-      no-slots-text="No slots are available" 
-      language="en"
+      dates-hidden-when-times-shown
       >
 </datetime-slot-picker>
 ```
@@ -90,6 +79,18 @@ Supported input time formats: (Pick a format and all time slots should be the sa
             ]
         }
     ];
+```
+
+If you are passing translations (using Javascript as shown below), you can set the language code
+
+```
+<datetime-slot-picker 
+      placeholder="Pick a time slot" 
+      time-slots-text="Time"
+      no-slots-text="No slots are available" 
+      language="en"
+      >
+</datetime-slot-picker>
 ```
 
 To pass translations, also set the translations property as shown below. You can have multiple langage codes like "en".
