@@ -13,8 +13,8 @@ import { generateTimeGrid } from '../../utils/generate-time-grid';
 })
 export class DatetimeSlotPicker {
   
-  @Prop() placeholder: string = 'Pick a time slot';
-  @Prop() timeSlotsText: string = 'Time';
+  @Prop() placeholder: string = 'Pick a slot';
+  @Prop() timeSlotsText: string = 'Time Slot';
   @Prop() noSlotsText: string = 'No slots are available';
   @Prop() slots: Slot[] = [];
   @Prop() language: string = 'en';
