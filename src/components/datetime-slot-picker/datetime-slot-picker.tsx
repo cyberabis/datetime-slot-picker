@@ -21,7 +21,6 @@ export class DatetimeSlotPicker {
   @Prop() translations: Translations = builtInTranslations;
   @Prop() amPmDisabled: boolean = false;
   @Prop() datesHiddenWhenTimesShown: boolean = false;
-  @Prop() inputAndPopupHidden: boolean = false;
   
   @State() isPopped: boolean;
   @State() isNeoInputAboveFold: boolean;

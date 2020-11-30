@@ -14,7 +14,7 @@ export function generateDateGrid(slots: Slot[]): DateGrid[] {
     let minDate: Date, maxDate: Date;
     for(let slot of slots) {
         if(slot.date && slot.date.substring(5) && slot.date.substring(5).split(' ').length === 3 &&
-            monthIndex[slot.date.substring(5).split(' ')[1]] && parseInt(slot.date.substring(5).split(' ')[2])
+            monthIndex[slot.date.substring(5).split(' ')[1]] > -1 && parseInt(slot.date.substring(5).split(' ')[2])
             && parseInt(slot.date.substring(5).split(' ')[0])) {
             let parsedDate = new Date(
                 parseInt(slot.date.substring(5).split(' ')[2]), 

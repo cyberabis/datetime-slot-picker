@@ -11,7 +11,6 @@ export namespace Components {
     interface DatetimeSlotPicker {
         "amPmDisabled": boolean;
         "datesHiddenWhenTimesShown": boolean;
-        "inputAndPopupHidden": boolean;
         "language": string;
         "noSlotsText": string;
         "placeholder": string;
@@ -35,7 +34,6 @@ declare namespace LocalJSX {
     interface DatetimeSlotPicker {
         "amPmDisabled"?: boolean;
         "datesHiddenWhenTimesShown"?: boolean;
-        "inputAndPopupHidden"?: boolean;
         "language"?: string;
         "noSlotsText"?: string;
         "onSlotUpdate"?: (event: CustomEvent<any>) => void;
