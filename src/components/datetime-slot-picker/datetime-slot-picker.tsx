@@ -77,7 +77,7 @@ export class DatetimeSlotPicker {
       this.selectedDate = dateText;
       if(this.slots.length && this.slots[0].timeSlots){
         //resetSlot until time is also chosen
-        this.resetSlot();
+        if(this.displayText) this.resetSlot();
         let slot = this.slots.find(s => s.date === this.selectedDate);
         this.timeGrids = generateTimeGrid(slot, this.datesHiddenWhenTimesShown ? 7 : 4);
         this.selectedTime = undefined;
@@ -98,7 +98,6 @@ export class DatetimeSlotPicker {
   private setSlot() {
     let translatedSelectedDate: string, translatedSelectedTime: string;
     let selectedDateParts = this.selectedDate.split(' ');
-    console.log(selectedDateParts);
     translatedSelectedDate = this.getTranslation(selectedDateParts[0].substring(0, selectedDateParts[0].length - 1)) + ', ' +
       selectedDateParts[1] + ' ' + this.getTranslation(selectedDateParts[2]) + ' ' + selectedDateParts[3];
     if (this.selectedTime) {
