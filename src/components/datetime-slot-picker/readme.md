@@ -13,9 +13,9 @@
 | `datesHiddenWhenTimesShown` | `dates-hidden-when-times-shown` |             | `boolean`      | `false`                    |
 | `language`                  | `language`                      |             | `string`       | `'en'`                     |
 | `noSlotsText`               | `no-slots-text`                 |             | `string`       | `'No slots are available'` |
-| `placeholder`               | `placeholder`                   |             | `string`       | `'Pick a time slot'`       |
+| `placeholder`               | `placeholder`                   |             | `string`       | `'Pick a slot'`            |
 | `slots`                     | --                              |             | `Slot[]`       | `[]`                       |
-| `timeSlotsText`             | `time-slots-text`               |             | `string`       | `'Time'`                   |
+| `timeSlotsText`             | `time-slots-text`               |             | `string`       | `'Time Slot'`              |
 | `translations`              | --                              |             | `Translations` | `builtInTranslations`      |
 
 
