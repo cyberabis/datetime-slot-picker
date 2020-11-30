@@ -130,6 +130,10 @@ export class DatetimeSlotPicker {
   private closeGrid() {
     this.isPopped = false;
     this.isTimeSlotGridVisible = false;
+    if(!this.displayText) {
+      this.selectedDate = undefined;
+      this.selectedTime = undefined;
+    }
   }
 
   private goBack() {
