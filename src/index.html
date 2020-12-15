@@ -1,102 +1,101 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <title>A webcomponent for date and time slot picker</title>
 
-    <script type="module" src="/build/datetime-slot-picker.esm.js"></script>
-    <script nomodule src="/build/datetime-slot-picker.js"></script>
-  </head>
-  <body>
-    <datetime-slot-picker 
-      placeholder="Pick a time slot" 
-      time-slots-text="Time Slot"
-      no-slots-text="No slots are available" 
-      language="en"
-      >
-    </datetime-slot-picker>
-    <!-- ALL OPTIONS VERSION
-    <datetime-slot-picker 
-      placeholder="Pick a time slot" 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>A webcomponent for date and time slot picker</title>
+
+  <script type="module" src="/build/datetime-slot-picker.esm.js"></script>
+  <script nomodule src="/build/datetime-slot-picker.js"></script>
+</head>
+
+<body>
+  <datetime-slot-picker placeholder="Pick a time slot" time-slots-text="Time Slot"
+    no-slots-text="No slots are available" language="en">
+  </datetime-slot-picker>
+  <!-- ALL OPTIONS VERSION
+    <datetime-slot-picker
+      placeholder="Pick a time slot"
       time-slots-text="Time"
-      no-slots-text="No slots are available" 
+      no-slots-text="No slots are available"
       language="en"
       am-pm-disabled
       dates-hidden-when-times-shown
       >
     </datetime-slot-picker>
     -->
-    <script>
-      const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
-      datetimeSlotPicker.addEventListener('slotUpdate', function(event){ console.log('Updated Slot: ', event.detail) });
-      datetimeSlotPicker.slots = [
-        {
-          date: 'Thu, 26 Nov 2020',
-          timeSlots: [
-            '6:00 AM',
-            '7:00 AM',
-            '8:00 AM',
-            '9:00 AM',
-            '10:00 AM',
-            '11:00 AM',
-            '12:00 PM',
-            '1:00 PM',
-            '2:00 PM',
-            '4:00 PM',
-            '5:00 PM',
-            '6:00 PM',
-            '7:00 PM',
-            '8:00 PM'          
-          ]
-        },
-        {
-          date: 'Fri, 27 Nov 2020',
-          timeSlots: [
-            '10 AM - 11 AM',
-            '11 AM - 12 PM',
-            '4 PM - 5 PM',
-            '5 PM - 6 PM'
-          ]
-        },
-        {
-          date: 'Mon, 30 Nov 2020',
-          timeSlots: [
-          ]
-        },
-        {
-          date: 'Tue, 1 Dec 2020',
-          timeSlots: [
-            '10 AM - 11 AM',
-            '11 AM - 12 PM',
-            '4 PM - 5 PM',
-            '5 PM - 6 PM'
-          ]
-        },
-        {
-          date: 'Mon, 4 Jan 2021',
-          timeSlots: [
-            '6 AM - 7 AM',
-            '7 AM - 8 AM',
-            '8 AM - 9 AM',
-            '9 AM - 10 AM',
-            '10 AM - 11 AM',
-            '11 AM - 12 PM',
-            '12 PM - 1 PM',
-            '1 PM - 2 PM',
-            '2 PM - 3 PM',
-            '3 PM - 4 PM',
-            '4 PM - 5 PM',
-            '5 PM - 6 PM',
-            '6 PM - 7 PM',
-            '7 PM - 8 PM',
-            '8 PM - 9 PM',
-            '9 PM - 10 PM',  
-            '10 PM - 11 PM',
-            '11 PM - 12 AM'   
-          ]
-        }
-      ];
-    </script>
-  </body>
+  <script>
+    const datetimeSlotPicker = document.querySelector('datetime-slot-picker');
+    datetimeSlotPicker.addEventListener('slotUpdate', function (event) { console.log('Updated Slot: ', event.detail) });
+    datetimeSlotPicker.slots = [
+      {
+        date: 'Thu, 26 Nov 2020',
+        timeSlots: [
+          '6:00 AM',
+          '7:00 AM',
+          '8:00 AM',
+          '9:00 AM',
+          '10:00 AM',
+          '11:00 AM',
+          '12:00 PM',
+          '1:00 PM',
+          '2:00 PM',
+          '4:00 PM',
+          '5:00 PM',
+          '6:00 PM',
+          '7:00 PM',
+          '8:00 PM'
+        ]
+      },
+      {
+        date: 'Fri, 27 Nov 2020',
+        timeSlots: [
+          '10 AM - 11 AM',
+          '11 AM - 12 PM',
+          '4 PM - 5 PM',
+          '5 PM - 6 PM'
+        ]
+      },
+      {
+        date: 'Mon, 30 Nov 2020',
+        timeSlots: [
+        ]
+      },
+      {
+        date: 'Tue, 1 Dec 2020',
+        timeSlots: [
+          '10 AM - 11 AM',
+          '11 AM - 12 PM',
+          '4 PM - 5 PM',
+          '5 PM - 6 PM'
+        ]
+      },
+      {
+        date: 'Mon, 4 Jan 2021',
+        timeSlots: [
+          '6 AM - 7 AM',
+          '7 AM - 8 AM',
+          '8 AM - 9 AM',
+          '9 AM - 10 AM',
+          '10 AM - 11 AM',
+          '11 AM - 12 PM',
+          '12 PM - 1 PM',
+          '1 PM - 2 PM',
+          '2 PM - 3 PM',
+          '3 PM - 4 PM',
+          '4 PM - 5 PM',
+          '5 PM - 6 PM',
+          '6 PM - 7 PM',
+          '7 PM - 8 PM',
+          '8 PM - 9 PM',
+          '9 PM - 10 PM',
+          '10 PM - 11 PM',
+          '11 PM - 12 AM'
+        ]
+      }
+    ];
+  </script>
+</body>
+
 </html>
