@@ -15,7 +15,7 @@
 }
 .neo-scroll {
   max-height: 225px !important;
-  overflow-y: scroll !important;
+  overflow-y: overlay !important;
 }
 .neo-scroll::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -44,8 +44,8 @@
   cursor: pointer !important;
   font-size: medium !important;
 }
-.neo-paginate-hidden {
-  padding: 2px 10px;
+.neo-paginate-disabled {
+  color: lightgrey !important;
 }
 .neo-table {
   table-layout: fixed !important;

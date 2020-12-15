@@ -210,7 +210,7 @@ export class DatetimeSlotPicker {
       </input>
       { this.isPopped &&
         <div style={popupStyle}
-          class={(this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above') + (this.datesHiddenWhenTimesShown && this.isTimeSlotGridVisible ? ' neo-scroll' : '')}
+          class={(this.isNeoInputAboveFold ? 'neo-popup neo-popup-below' : 'neo-popup neo-popup-above')}
           >
           {/* Date Grid when data exists */}
           { (!this.isTimeSlotGridVisible || !this.datesHiddenWhenTimesShown) && this.dateGrids && this.dateGrids.length > 0 &&
@@ -218,15 +218,9 @@ export class DatetimeSlotPicker {
               <tr class="neo-tr">
                 <th class="neo-th neo-left-end"></th>
                 <th colSpan={5} class="neo-th neo-center">
-                  {this.activeDateGridPage > 0
-                    ? <span class="neo-paginate" onClick={()=>this.prevDateGrid()}>&lt;</span>
-                    : <span class="neo-paginate-hidden">&nbsp;</span>
-                  }
+                  <span class={this.activeDateGridPage > 0 ? 'neo-paginate' : 'neo-paginate neo-paginate-disabled'} onClick={() => { if (this.activeDateGridPage > 0) this.prevDateGrid() }}>&lt;</span>
                   {this.getTranslation(activeMonthYear[0]) + ' ' + activeMonthYear[1]}
-                  {this.activeDateGridPage < (this.dateGrids.length - 1)
-                    ? <span class="neo-paginate" onClick={()=>this.nextDateGrid()}>&gt;</span>
-                    : <span class="neo-paginate-hidden">&nbsp;</span>
-                  }
+                  <span class={(this.activeDateGridPage < (this.dateGrids.length - 1)) ? 'neo-paginate' : 'neo-paginate neo-paginate-disabled'} onClick={() => { if (this.activeDateGridPage < (this.dateGrids.length - 1)) this.nextDateGrid() }}>&gt;</span>
                 </th>
                 <th class="neo-th neo-right-end"><span class="neo-close" onClick={()=>this.closeGrid()}>&times;</span></th>
               </tr>
@@ -278,67 +272,70 @@ export class DatetimeSlotPicker {
             </table>
           }
           { (this.isTimeSlotGridVisible || (!this.datesHiddenWhenTimesShown && this.selectedDate)) && this.timeGrids && this.timeGrids.length > 0 &&
-            <table class="neo-table neo-grid neo-time-grid">
+            <div>
               {
                 this.datesHiddenWhenTimesShown &&
-                <tr class="neo-tr">
-                  <th class="neo-th neo-left-end">
-                    <span class="neo-back" onClick={() => this.goBack()}>&larr;</span>
-                  </th>
-                  <th class="neo-th neo-center" colSpan={6}>
-                    {this.timeSlotsText}
-                  </th>
-                  <th class="neo-th neo-right-end">
-                    <span class="neo-close" onClick={() => this.closeGrid()}>&times;</span>
-                  </th>
-                </tr>
+                <table class="neo-table neo-grid neo-time-grid">
+                  <tr class="neo-tr">
+                    <th class="neo-th neo-left-end">
+                      <span class="neo-back" onClick={() => this.goBack()}>&larr;</span>
+                    </th>
+                    <th class="neo-th neo-center" colSpan={6}>
+                      {this.timeSlotsText}
+                    </th>
+                    <th class="neo-th neo-right-end">
+                      <span class="neo-close" onClick={() => this.closeGrid()}>&times;</span>
+                    </th>
+                  </tr>
+                </table>
               }
-              {this.timeGrids[this.activeTimeGridPage].rows.map(row=>{
-                return <tr class="neo-tr neo-equal-width">
-                  {row.times.map(time=>{
-                    let translatedTimeText;
-                    if(time) {
-                      translatedTimeText = this.formatTimeSlot(time.timeText);
-                      translatedTimeText = translatedTimeText.replace(/AM/g, this.getTranslation('AM'));
-                      translatedTimeText = translatedTimeText.replace(/PM/g, this.getTranslation('PM'));
-                    }
-                    return time
-                      ? <td
-                          colSpan = {row.times.length === 2 ? 4 : 2}
-                          class={time.timeText == this.selectedTime ? 'neo-td neo-cell neo-cell-selected' : 'neo-td neo-cell neo-cell-enabled'}
-                          onClick={()=>this.setSelectedTime(time.timeText)}
-                          >
-                          <span class={time.timeText == this.selectedTime ? 'neo-time neo-time-selected' : 'neo-time neo-time-enabled'}>
-                            {translatedTimeText}
-                          </span>
-                        </td>
-                      : <td colSpan = {row.times.length === 2 ? 4 : 2} class="neo-td">&nbsp;</td>
-                  })}
-                </tr>
-              })}
+              <div class={(this.datesHiddenWhenTimesShown && this.isTimeSlotGridVisible ? ' neo-scroll' : '')}>
+                <table class="neo-table neo-grid neo-time-grid">
+                {
+                this.timeGrids[this.activeTimeGridPage].rows.map(row=>{
+                  return <tr class="neo-tr neo-equal-width">
+                    {row.times.map(time=>{
+                      let translatedTimeText;
+                      if(time) {
+                        translatedTimeText = this.formatTimeSlot(time.timeText);
+                        translatedTimeText = translatedTimeText.replace(/AM/g, this.getTranslation('AM'));
+                        translatedTimeText = translatedTimeText.replace(/PM/g, this.getTranslation('PM'));
+                      }
+                      return time
+                        ? <td
+                            colSpan = {row.times.length === 2 ? 4 : 2}
+                            class={time.timeText == this.selectedTime ? 'neo-td neo-cell neo-cell-selected' : 'neo-td neo-cell neo-cell-enabled'}
+                            onClick={()=>this.setSelectedTime(time.timeText)}
+                            >
+                            <span class={time.timeText == this.selectedTime ? 'neo-time neo-time-selected' : 'neo-time neo-time-enabled'}>
+                              {translatedTimeText}
+                            </span>
+                          </td>
+                        : <td colSpan = {row.times.length === 2 ? 4 : 2} class="neo-td">&nbsp;</td>
+                    })}
+                  </tr>
+                })}
+                </table>
+              </div>
               {
-                !this.datesHiddenWhenTimesShown && this.timeGrids && this.timeGrids.length > 1 &&
+                !this.datesHiddenWhenTimesShown && this.timeGrids && this.timeGrids.length > 0 &&
+                <table class="neo-table neo-grid neo-time-grid">
                 <tr class="neo-tr">
                   <th class="neo-th neo-left-end">
                     <span>&nbsp;</span>
                   </th>
                   <th class="neo-th neo-center" colSpan={6}>
-                    {this.activeTimeGridPage > 0
-                      ? <span class="neo-paginate" onClick={() => this.prevTimeGrid()}>&lt;</span>
-                      : <span class="neo-paginate-hidden">&nbsp;</span>
-                    }
+                    <span class={this.activeTimeGridPage > 0 ? 'neo-paginate' : 'neo-paginate neo-paginate-disabled'} onClick={() => { if (this.activeTimeGridPage > 0) this.prevTimeGrid() }}>&lt;</span>
                     {this.timeSlotsText}
-                    {this.activeTimeGridPage < (this.timeGrids.length - 1)
-                      ? <span class="neo-paginate" onClick={() => this.nextTimeGrid()}>&gt;</span>
-                      : <span class="neo-paginate-hidden">&nbsp;</span>
-                    }
+                    <span class={(this.activeTimeGridPage < (this.timeGrids.length - 1)) ? 'neo-paginate' : 'neo-paginate neo-paginate-disabled'} onClick={() => { if (this.activeTimeGridPage < (this.timeGrids.length - 1)) this.nextTimeGrid() }}>&gt;</span>
                   </th>
                   <th class="neo-th neo-right-end">
                     <span>&nbsp;</span>
                   </th>
                 </tr>
+                </table>
               }
-            </table>
+            </div>
           }
           { (this.isTimeSlotGridVisible || (!this.datesHiddenWhenTimesShown && this.selectedDate)) && this.timeGrids && !this.timeGrids.length &&
             <table class="neo-table neo-grid neo-empty-grid">
