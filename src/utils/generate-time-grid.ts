@@ -18,7 +18,7 @@ export function generateTimeGrid(slot: Slot, datesHiddenWhenTimesShown: boolean)
     let noOfCells = noOfColumns * noOfRows;
     let noOfGrids = Math.ceil(times.length / noOfCells);
     if (datesHiddenWhenTimesShown && noOfGrids > 1) {
-      noOfRows = noOfGrids * noOfRows;
+      noOfRows = Math.ceil(times.length / noOfColumns);
       noOfGrids = 1;
     }
     for (let gridCounter = 1; gridCounter <= noOfGrids; gridCounter++) {

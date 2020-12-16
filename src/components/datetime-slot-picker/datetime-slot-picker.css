@@ -14,7 +14,7 @@
   border: 1px solid whitesmoke !important;
 }
 .neo-scroll {
-  max-height: 225px !important;
+  max-height: 200px !important;
   overflow-y: overlay !important;
 }
 .neo-scroll::-webkit-scrollbar {
@@ -50,6 +50,7 @@
 .neo-table {
   table-layout: fixed !important;
   width:100% !important;
+  margin-bottom: 0px !important;
 }
 .neo-tr.neo-equal-width>*:nth-last-child(2)~*{ width:50% !important}
 .neo-tr.neo-equal-width>*:nth-last-child(3)~*{ width:33.3% !important}

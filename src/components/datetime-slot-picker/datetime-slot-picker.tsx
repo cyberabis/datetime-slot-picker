@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen } from '@stencil/core';
 import { builtInTranslations } from '../../utils/translations';
 import { Slot } from '../../models/slot';
 import { DateGrid } from '../../models/date-grid';
@@ -36,6 +36,19 @@ export class DatetimeSlotPicker {
   @State() displayText: string;
 
   @Event() slotUpdate: EventEmitter;
+
+  @Listen('clearSlot', { target: 'document' }) //Clear slot event to reset the slot
+  handleClearSlot(event) {
+    console.log('Clear event', event);
+    this.resetSlot();
+  }
+
+  @Listen('click', { target: 'window' }) //Close the picker outside
+  handleOnClick(event) {
+    let isInsideCalendar = (event && event.target && event.target.className && event.target.className.includes('neo-')) ? true : false;
+    if (!isInsideCalendar)
+      this.closeGrid();
+  }
 
   neoInput!: HTMLInputElement;
 
