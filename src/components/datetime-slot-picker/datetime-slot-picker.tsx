@@ -16,10 +16,11 @@ export class DatetimeSlotPicker {
   @Prop() placeholder: string = 'Pick a slot';
   @Prop() timeSlotsText: string = 'Time Slot';
   @Prop() noSlotsText: string = 'No slots are available';
+  @Prop() dateFormat: string = 'ddd, D MMM YYYY';
+  @Prop() timeFormat: string = 'h:mm A';
   @Prop() slots: Slot[] = [];
   @Prop() language: string = 'en';
   @Prop() translations: Translations = builtInTranslations;
-  @Prop() amPmDisabled: boolean = false;
   @Prop() datesHiddenWhenTimesShown: boolean = false;
 
   @State() isPopped: boolean;
@@ -110,9 +111,15 @@ export class DatetimeSlotPicker {
 
   private setSlot() {
     let translatedSelectedDate: string, translatedSelectedTime: string;
-    let selectedDateParts = this.selectedDate.split(' ');
-    translatedSelectedDate = this.getTranslation(selectedDateParts[0].substring(0, selectedDateParts[0].length - 1)) + ', ' +
-      selectedDateParts[1] + ' ' + this.getTranslation(selectedDateParts[2]) + ' ' + selectedDateParts[3];
+    if (this.dateFormat === 'MM-DD-YYYY') {
+      let formattedDate = new Date(this.selectedDate);
+      translatedSelectedDate = `${(formattedDate.getMonth() + 1)}-${formattedDate.getDate()}-${formattedDate.getFullYear()}`;
+    }
+    else { //ddd, D MMM YYYY
+      let selectedDateParts = this.selectedDate.split(' ');
+      translatedSelectedDate = this.getTranslation(selectedDateParts[0].substring(0, selectedDateParts[0].length - 1)) + ', ' +
+        selectedDateParts[1] + ' ' + this.getTranslation(selectedDateParts[2]) + ' ' + selectedDateParts[3];
+    }
     if (this.selectedTime) {
       translatedSelectedTime = this.formatTimeSlot(this.selectedTime);
       translatedSelectedTime = translatedSelectedTime.replace(/AM/g, this.getTranslation('AM'));
@@ -191,7 +198,7 @@ export class DatetimeSlotPicker {
     };
     //Util function - ends
     let formattedTimeText = timeText;
-    if (this.amPmDisabled) {
+    if (this.timeFormat === 'HH:MM') {
       if (timeText.indexOf('-') > -1) {
         let timeTextParts: string[];
         timeTextParts = timeText.split('-');

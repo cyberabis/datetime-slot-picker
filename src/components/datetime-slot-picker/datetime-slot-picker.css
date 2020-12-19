@@ -65,6 +65,7 @@
 .neo-th, .neo-td {
   padding: 3px !important;
   text-align: center !important;
+  overflow: hidden !important;
 }
 .neo-right-end {
   text-align: right !important;

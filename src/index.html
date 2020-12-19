@@ -11,8 +11,11 @@
 </head>
 
 <body>
-  <datetime-slot-picker placeholder="Pick a time slot" time-slots-text="Time Slot"
-    no-slots-text="No slots are available" language="en">
+  <datetime-slot-picker
+    time-slots-text="Time Slot"
+    dates-hidden-when-times-shown
+    no-slots-text="No slots are available"
+    language="en">
   </datetime-slot-picker>
   <!-- ALL OPTIONS VERSION
     <datetime-slot-picker
@@ -20,7 +23,8 @@
       time-slots-text="Time"
       no-slots-text="No slots are available"
       language="en"
-      am-pm-disabled
+      date-format="MM-DD-YYYY"
+      time-format="HH:MM"
       dates-hidden-when-times-shown
       >
     </datetime-slot-picker>
