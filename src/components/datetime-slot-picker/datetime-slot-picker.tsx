@@ -46,7 +46,7 @@ export class DatetimeSlotPicker {
 
   @Listen('click', { target: 'window' }) //Close the picker outside
   handleOnClick(event) {
-    let isInsideCalendar = (event && event.target && event.target.className && event.target.className.includes('neo-')) ? true : false;
+    let isInsideCalendar = (event && event.target && event.target.className && typeof(event.target.className) === 'string' && event.target.className.includes('neo-')) ? true : false;
     if (!isInsideCalendar)
       this.closeGrid();
   }
