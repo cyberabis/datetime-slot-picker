@@ -37,7 +37,7 @@ To display time slots in HH:mm format, pass the "time-format" property. The "dat
       placeholder="Pick a time slot" 
       time-slots-text="Time"
       no-slots-text="No slots are available" 
-      time-format="HH:MM"
+      time-format="HH:mm"
       dates-hidden-when-times-shown
       >
 </datetime-slot-picker>

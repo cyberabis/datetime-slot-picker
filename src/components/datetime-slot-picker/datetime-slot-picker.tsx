@@ -198,7 +198,7 @@ export class DatetimeSlotPicker {
     };
     //Util function - ends
     let formattedTimeText = timeText;
-    if (this.timeFormat === 'HH:MM') {
+    if (this.timeFormat === 'HH:mm') {
       if (timeText.indexOf('-') > -1) {
         let timeTextParts: string[];
         timeTextParts = timeText.split('-');
