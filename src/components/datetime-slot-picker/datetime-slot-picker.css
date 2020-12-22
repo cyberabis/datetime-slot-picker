@@ -58,8 +58,12 @@
 .neo-tr.neo-equal-width>*:nth-last-child(5)~*{ width:20% !important}
 .neo-tr.neo-equal-width>*:nth-last-child(6)~*{ width:16.7% !important}
 .neo-tr.neo-equal-width>*:nth-last-child(7)~*{ width:14.3% !important}
-.neo-table, .neo-th, .neo-td {
+.neo-th, .neo-td {
   border: 1px solid whitesmoke !important;
+  border-collapse: collapse !important;
+}
+.neo-table {
+  border: 1.5px solid whitesmoke !important;
   border-collapse: collapse !important;
 }
 .neo-th, .neo-td {
