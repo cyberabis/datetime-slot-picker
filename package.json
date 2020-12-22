@@ -29,5 +29,12 @@
     "type": "git",
     "url": "https://github.com/cyberabis/datetime-slot-picker.git"
   },
-  "keywords": ["Date Time Slot Picker", "Time Slot Picker", "Date Picker", "Appointment Time Picker", "Restaurant Reservation Time Picker", "Date and Time Picker for Appointment Booking"]
+  "keywords": [
+    "Date Time Slot Picker",
+    "Time Slot Picker",
+    "Date Picker",
+    "Appointment Time Picker",
+    "Restaurant Reservation Time Picker",
+    "Date and Time Picker for Appointment Booking"
+  ]
 }

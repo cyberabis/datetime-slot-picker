@@ -9,12 +9,13 @@ import { Slot } from "./models/slot";
 import { Translations } from "./models/translations";
 export namespace Components {
     interface DatetimeSlotPicker {
-        "amPmDisabled": boolean;
+        "dateFormat": string;
         "datesHiddenWhenTimesShown": boolean;
         "language": string;
         "noSlotsText": string;
         "placeholder": string;
         "slots": Slot[];
+        "timeFormat": string;
         "timeSlotsText": string;
         "translations": Translations;
     }
@@ -32,13 +33,14 @@ declare global {
 }
 declare namespace LocalJSX {
     interface DatetimeSlotPicker {
-        "amPmDisabled"?: boolean;
+        "dateFormat"?: string;
         "datesHiddenWhenTimesShown"?: boolean;
         "language"?: string;
         "noSlotsText"?: string;
         "onSlotUpdate"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
         "slots"?: Slot[];
+        "timeFormat"?: string;
         "timeSlotsText"?: string;
         "translations"?: Translations;
     }

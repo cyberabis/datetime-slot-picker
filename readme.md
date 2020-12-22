@@ -30,14 +30,14 @@ The properties are optional, you can use them to pass custom text.
 </datetime-slot-picker>
 ```
 
-To display time slots in HH:mm format, pass the "am-pm-disabled" property. The "dates-hidden-when-times-shown" property can be used if you would like to make the popup more compact, when time slots are shown the date calendar will be hidden.
+To display time slots in HH:mm format, pass the "time-format" property. The "dates-hidden-when-times-shown" property can be used if you would like to make the popup more compact, when time slots are shown the date calendar will be hidden.
 
 ```
 <datetime-slot-picker 
       placeholder="Pick a time slot" 
       time-slots-text="Time"
       no-slots-text="No slots are available" 
-      am-pm-disabled
+      time-format="HH:mm"
       dates-hidden-when-times-shown
       >
 </datetime-slot-picker>
