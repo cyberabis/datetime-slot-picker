@@ -46,7 +46,7 @@ export class DatetimeSlotPicker {
 
   @Listen('click', { target: 'window' }) //Close the picker outside
   handleOnClick(event) {
-    let isInsideCalendar = (event && event.target && event.target.className && typeof(event.target.className) === 'string' && event.target.className.includes('neo-')) ? true : false;
+    let isInsideCalendar = (event && event.target && event.target.className && typeof (event.target.className) === 'string' && event.target.className.includes('neo-')) ? true : false;
     if (!isInsideCalendar)
       this.closeGrid();
   }
@@ -114,6 +114,10 @@ export class DatetimeSlotPicker {
     if (this.dateFormat === 'MM-DD-YYYY') {
       let formattedDate = new Date(this.selectedDate);
       translatedSelectedDate = `${(formattedDate.getMonth() + 1)}-${formattedDate.getDate()}-${formattedDate.getFullYear()}`;
+    }
+    else if (this.dateFormat === 'DD-MM-YYYY') {
+      let formattedDate = new Date(this.selectedDate);
+      translatedSelectedDate = `${formattedDate.getDate()}-${formattedDate.getMonth() + 1}-${formattedDate.getFullYear()}`;
     }
     else { //ddd, D MMM YYYY
       let selectedDateParts = this.selectedDate.split(' ');
