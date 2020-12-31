@@ -36,7 +36,7 @@
   background-color: #ffffff;
 }
 .neo-input {
-  min-width: 275px !important;
+  min-width: 325px !important;
   cursor: pointer !important;
 }
 .neo-paginate, .neo-close, .neo-back {
@@ -81,7 +81,7 @@
 }
 .neo-grid {
   font-size: small !important;
-  min-width: 275px !important;
+  min-width: 325px !important;
 }
 .neo-day, .neo-time {
   padding: 2px !important;
